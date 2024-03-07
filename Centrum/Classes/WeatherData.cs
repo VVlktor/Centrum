@@ -15,12 +15,6 @@ namespace Centrum.Classes
         public string Country { get; set; }
     }
 
-    public class Condition
-    {
-        // Assuming there are properties within the condition object
-        // You should add properties here based on the actual JSON structure of the condition object
-    }
-
     public class Current
     {
         [JsonPropertyName("wind_kph")]
