@@ -37,7 +37,13 @@ namespace Centrum
             var weatherData = await GetWeatherAsync();
             if (weatherData != null)
             {
-               pogoda.Text = $"Temperatura: {weatherData.Current.Temp_c}\n";
+                LabelMiasto.Text = $"{weatherData.Location.Name}";
+                LabelTemp.Text = $"{weatherData.Current.Temp_c} °C";
+                LabelWind.Text = $"{weatherData.Current.Wind_kph} Km/h";
+                LabelPres.Text = $"{weatherData.Current.Pressure_mb} hPa";
+                LabelDanePogoda.Text = $"Dane z:\n{weatherData.Current.Last_updated}";
+                ImagePogody.Source = "sunnyday.png";
+                widgetPogody.IsVisible = true;
             }
         }
 

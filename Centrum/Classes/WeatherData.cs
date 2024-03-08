@@ -13,6 +13,8 @@ namespace Centrum.Classes
         public string Name { get; set; }
         [JsonPropertyName("country")]
         public string Country { get; set; }
+        [JsonPropertyName("localtime")]
+        public string Localtime { get; set; }
     }
 
     public class Current
@@ -20,9 +22,11 @@ namespace Centrum.Classes
         [JsonPropertyName("wind_kph")]
         public double Wind_kph { get; set; }
         [JsonPropertyName("pressure_mb")]
-        public double pressure_mb { get; set; }
+        public double Pressure_mb { get; set; }
         [JsonPropertyName("temp_c")]
         public double Temp_c { get; set; }
+        [JsonPropertyName("last_updated")]
+        public string Last_updated { get; set;}
     }
 
     public class WeatherData
