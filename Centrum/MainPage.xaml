@@ -5,25 +5,104 @@
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        <Border x:Name="widgetPogody" Margin="10" HeightRequest="250" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10" IsVisible="False">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" HorizontalOptions="Start">
-                    <Image Margin="5,5,0,0" x:Name="ImagePogody"/>
-                    <Label Text="Dane z:" x:Name="LabelDanePogoda" FontSize="16" VerticalOptions="End"/>
-                </StackLayout>
-                <StackLayout Grid.Column="1" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
-                    <Label Text="°C" x:Name="LabelTemp" HorizontalOptions="End" VerticalOptions="EndAndExpand" Margin="5" FontSize="24"/>
-                    <Label Text="Km/h" x:Name="LabelWind" VerticalOptions="End" HorizontalOptions="End" Margin="5" FontSize="24"/>
-                    <Label Text="hPa" x:Name="LabelPres" VerticalOptions="End" HorizontalOptions="End" Margin="5" FontSize="24"/>
-                    <Label HorizontalOptions="End" VerticalOptions="End" Text="Warsaw" x:Name="LabelMiasto" Margin="5" FontSize="36"/>
-                </StackLayout>
-            </Grid>
-
+        <Border Margin="10" HeightRequest="250" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <ActivityIndicator IsRunning="True" HorizontalOptions="Center" VerticalOptions="Center" x:Name="indicatorPogody"/>
+                <Grid IsVisible="False" x:Name="widgetPogody">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" HorizontalOptions="Start">
+                        <Image Margin="5,5,0,0" x:Name="ImagePogody"/>
+                        <Label Text="Dane z:" x:Name="LabelDanePogoda" FontSize="16" VerticalOptions="End"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+                        <Label Text="°C" x:Name="LabelTemp" HorizontalOptions="End" VerticalOptions="EndAndExpand" Margin="5" FontSize="24"/>
+                        <Label Text="Km/h" x:Name="LabelWind" VerticalOptions="End" HorizontalOptions="End" Margin="5" FontSize="24"/>
+                        <Label Text="hPa" x:Name="LabelPres" VerticalOptions="End" HorizontalOptions="End" Margin="5" FontSize="24"/>
+                        <Label HorizontalOptions="End" VerticalOptions="End" Text="Warsaw" x:Name="LabelMiasto" Margin="5" FontSize="36"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
         </Border>
-    </StackLayout>
+        
+        
+        
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="7" Grid.Column="0" HeightRequest="100" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowNewPage" CommandParameter="Newsy" NumberOfTapsRequired="1"/>
+                </Border.GestureRecognizers>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="newsicon.png" Grid.Column="0"/>
+                        <Label Text="Newsy" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </Border>
+            <Border Margin="7" Grid.Column="1" HeightRequest="100" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowNewPage" CommandParameter="Pogoda" NumberOfTapsRequired="1"/>
+                </Border.GestureRecognizers>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="sunnyday.png" Grid.Column="0"/>
+                        <Label Text="Pogoda" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Grid.Column="1"/>
+                    </Grid>
+                    
+                </StackLayout>
+            </Border>
+        </Grid>
 
+        <Grid Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="7" Grid.Column="0" HeightRequest="100" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowNewPage" CommandParameter="Bluetooth" NumberOfTapsRequired="1"/>
+                </Border.GestureRecognizers>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image MaximumHeightRequest="70" Source="bluetoothicon.png" Grid.Column="0"/>
+                        <Label Text="Bluetooth" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="17" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </Border>
+            <Border Margin="7" Grid.Column="1" HeightRequest="100" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowNewPage" CommandParameter="Notatnik" NumberOfTapsRequired="1"/>
+                </Border.GestureRecognizers>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="noteicon.png" Grid.Column="0"/>
+                        <Label Text="Notatnik" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="19" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </Border>
+        </Grid>
+    </StackLayout>
+    
 </ContentPage>

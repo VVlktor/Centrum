@@ -27,7 +27,9 @@ namespace Centrum.Classes
         public double Temp_c { get; set; }
         [JsonPropertyName("last_updated")]
         public string Last_updated { get; set;}
+        public int Chance_of_rain {  get; set; } = 0;
     }
+
 
     public class WeatherData
     {
