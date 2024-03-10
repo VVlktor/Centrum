@@ -11,5 +11,8 @@ namespace Centrum.Classes
     {
        [JsonPropertyName("WEATHER_API_KEY")]
        public string WEATHER_API_KEY { get; set; }
+
+       [JsonPropertyName("NEWS_API_KEY")]
+       public string NEWS_API_KEY { get; set; }
     }
 }

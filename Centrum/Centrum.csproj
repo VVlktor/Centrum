@@ -41,7 +41,7 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		
-		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#6b6f73" BaseSize="1200,1200"/>
+		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#6b6f73" BaseSize="1200,1200" />
 		
 		
 		<!-- Splash Screen -->
@@ -67,9 +67,11 @@
 	  <None Remove="Resources\AppIcon\appicon.png" />
 	  <None Remove="Resources\AppIcon\myappicon.png" />
 	  <None Remove="Resources\Images\bluetoothicon.png" />
+	  <None Remove="Resources\Images\githubicon.png" />
 	  <None Remove="Resources\Images\newsicon.png" />
 	  <None Remove="Resources\Images\noteicon.png" />
 	  <None Remove="Resources\Images\rainyday.png" />
+	  <None Remove="Resources\Images\settingsicon.png" />
 	  <None Remove="Resources\Images\sunnyday.png" />
 	  <None Remove="Resources\Raw\HiddenData.json" />
 	  <None Remove="Resources\Splash\splash.png" />
@@ -83,13 +85,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiAsset Update="Resources\Raw\HiddenData.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\NewsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

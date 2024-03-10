@@ -3,6 +3,7 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json.Nodes;
+using Centrum.Pages;
 
 namespace Centrum
 {
@@ -10,16 +11,16 @@ namespace Centrum
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private string WeatherApiKey;
-        int dailyChanceOfRain=9888;
+        private string NewsApiKey;
 
         public MainPage()
         {
-            LoadWeather();
+            LoadApiKeys();
             InitializeComponent();
             
         }
 
-        public async void LoadWeather()
+        public async void LoadApiKeys()
         {
             try
             {
@@ -28,6 +29,7 @@ namespace Centrum
                 string fileContent = await reader.ReadToEndAsync();
                 HiddenDataTokens obj = JsonConvert.DeserializeObject<HiddenDataTokens>(fileContent);
                 WeatherApiKey = obj.WEATHER_API_KEY;
+                NewsApiKey = obj.NEWS_API_KEY;
                 LoadWeatherData();
             }
             catch (Exception exception)
@@ -77,7 +79,28 @@ namespace Centrum
 
         private void ShowNewPage(object sender, TappedEventArgs e)
         {
-            var whichPage = e.Parameter as string;
+            var whichPage = e.Parameter as string;//astronomy.json - kiedy wschodzi i zachodzi slonce dodacx do strony pogody, pewnie o tym pamietasz :P
+            switch (whichPage)
+            {
+                case "Autor":
+                    GoToGithub();
+                    break;
+                case "Newsy":
+                    GoToNewsPage();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void GoToGithub()
+        {
+            Launcher.OpenAsync("https://github.com/Nifeel17");
+        }
+
+        public async void GoToNewsPage()
+        {
+            await Navigation.PushAsync(new NavigationPage(new NewsPage(NewsApiKey)));
         }
     }
 
