@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json.Nodes;
 using Centrum.Pages;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Centrum
 {
@@ -64,7 +65,7 @@ namespace Centrum
 
         public async Task<WeatherData> GetWeatherAsync()
         {
-            string link = $"https://api.weatherapi.com/v1/forecast.json?key=" + WeatherApiKey + "&q=Warsaw";
+            string link = $"https://api.weatherapi.com/v1/forecast.json?key=" + WeatherApiKey+"&q=Warsaw";
             var response = await _httpClient.GetAsync(link);
             if (!response.IsSuccessStatusCode)
             {

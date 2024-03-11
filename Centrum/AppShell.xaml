@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Centrum"
     Shell.FlyoutBehavior="Disabled"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="True">
 
     <ShellContent
-        NavigationPage.HasNavigationBar="False"
+        NavigationPage.HasNavigationBar="True"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
