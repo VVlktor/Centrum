@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Centrum.Pages.WeatherPage"
+             Title="Pogoda"
+             NavigationPage.IconColor="Black">
+    <StackLayout>
+        <Image x:Name="imagePogody" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" Margin="0"/>
+        <Label x:Name="LabelTemp" Text="°C" FontSize="28" HorizontalOptions="Center"/>
+        <Label x:Name="LabelPlace" Text="" FontSize="18" HorizontalOptions="Center"/>
+
+        <Grid Margin="5,25,5,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border HeightRequest="190" Grid.Column="0" WidthRequest="110" BackgroundColor="white" StrokeShape="RoundRectangle 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Ciśnienie" Grid.Row="0" TextColor="Black" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="LabelPressure" Text="hPa" Grid.Row="1" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
+                </Grid>
+            </Border>
+
+            <Border HeightRequest="190" Grid.Column="1" WidthRequest="110" BackgroundColor="White" StrokeShape="RoundRectangle 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Wiatr" Grid.Row="0" TextColor="Black" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="LabelWind" Text="Km/h" Grid.Row="1" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
+                </Grid>
+            </Border>
+
+            <Border HeightRequest="190" Grid.Column="2" WidthRequest="110" BackgroundColor="White" StrokeShape="RoundRectangle 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Wilgotność" Grid.Row="0" TextColor="Black" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="LabelHumidity" Text="%" Grid.Row="1" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
+                </Grid>
+            </Border>
+
+        </Grid>
+
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Margin="13,0,10,0" HeightRequest="150" StrokeShape="RoundRectangle 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontSize="18" Text="Wschód słońca" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="LabelSunrise" FontSize="20" FontAttributes="Bold" Grid.Row="1" Text="Wschód słońca" VerticalOptions="Start" HorizontalOptions="Center"/>
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" Margin="10,0,13,0"  HeightRequest="150" StrokeShape="RoundRectangle 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontSize="18" Text="Wschód słońca" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <Label x:Name="LabelSunset" FontSize="20" FontAttributes="Bold" Grid.Row="1" Text="Wschód słońca" VerticalOptions="Start" HorizontalOptions="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <Label x:Name="LabelDataInfo" VerticalOptions="EndAndExpand" Margin="10,0,0,10" FontSize="18" Text="Dane z: "/>
+    </StackLayout>
+</ContentPage>

@@ -13,6 +13,7 @@ namespace Centrum
         private readonly HttpClient _httpClient = new HttpClient();
         private string WeatherApiKey;
         private string NewsApiKey;
+        WeatherData weatherData;
 
         public MainPage()
         {
@@ -41,7 +42,7 @@ namespace Centrum
 
         public async void LoadWeatherData()
         {
-            var weatherData = await GetWeatherAsync();
+            weatherData = await GetWeatherAsync();
             if (weatherData != null)
             {
                 widgetPogody.IsVisible = true;
@@ -50,7 +51,11 @@ namespace Centrum
                 LabelWind.Text = $"{weatherData.Current.Wind_kph} Km/h";
                 LabelPres.Text = $"{weatherData.Current.Pressure_mb} hPa";
                 LabelDanePogoda.Text = $"Dane z:\n{weatherData.Current.Last_updated}";
-                if (weatherData.Current.Chance_of_rain >= 50 )
+                if (weatherData.Current.Chance_of_snow>=70)
+                {
+                    ImagePogody.Source = "snowyday.png";
+                }
+                else if (weatherData.Current.Chance_of_rain >= 60 )
                 {
                     ImagePogody.Source = "rainyday.png";
                 }
@@ -75,6 +80,10 @@ namespace Centrum
             WeatherData dane = System.Text.Json.JsonSerializer.Deserialize<WeatherData>(content);
             JObject jsonObj = JObject.Parse(content);
             dane.Current.Chance_of_rain = jsonObj["forecast"]["forecastday"][0]["day"]["daily_chance_of_rain"].Value<int>();
+            dane.Current.Chance_of_snow = jsonObj["forecast"]["forecastday"][0]["day"]["daily_chance_of_snow"].Value<int>();
+            dane.Current.Sunset = jsonObj["forecast"]["forecastday"][0]["astro"]["sunset"].Value<string>();
+            dane.Current.Sunrise = jsonObj["forecast"]["forecastday"][0]["astro"]["sunrise"].Value<string>();
+            dane.Current.Avg_humidity = jsonObj["forecast"]["forecastday"][0]["day"]["avghumidity"].Value<int>();
             return dane;
         }
 
@@ -89,6 +98,9 @@ namespace Centrum
                 case "Newsy":
                     GoToNewsPage();
                     break;
+                case "Pogoda":
+                    GoToWeatherPage();
+                    break;
                 default:
                     break;
             }
@@ -102,6 +114,11 @@ namespace Centrum
         public async void GoToNewsPage()
         {
             await Navigation.PushAsync(new NavigationPage(new NewsPage(NewsApiKey)));
+        }
+
+        public async void GoToWeatherPage()
+        {
+            await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
         }
     }
 

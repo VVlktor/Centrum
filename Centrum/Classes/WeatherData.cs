@@ -28,6 +28,11 @@ namespace Centrum.Classes
         [JsonPropertyName("last_updated")]
         public string Last_updated { get; set;}
         public int Chance_of_rain {  get; set; } = 0;
+        public double Max_temp_c { get; set; }
+        public int Chance_of_snow {  get; set; }
+        public string Sunrise { get; set; }
+        public string Sunset { get; set; }
+        public int Avg_humidity {  get; set; }
     }
 
 

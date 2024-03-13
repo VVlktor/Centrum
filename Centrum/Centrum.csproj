@@ -52,9 +52,6 @@
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		<MauiImage Update="Resources\Images\sunnyday.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</MauiImage>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -72,6 +69,7 @@
 	  <None Remove="Resources\Images\noteicon.png" />
 	  <None Remove="Resources\Images\rainyday.png" />
 	  <None Remove="Resources\Images\settingsicon.png" />
+	  <None Remove="Resources\Images\snowyday.png" />
 	  <None Remove="Resources\Images\sunnyday.png" />
 	  <None Remove="Resources\Raw\HiddenData.json" />
 	  <None Remove="Resources\Splash\splash.png" />
@@ -95,6 +93,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\PageOfNews.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\WeatherPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
