@@ -59,7 +59,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="sunnyday.png" Grid.Column="0"/>
+                        <Image Source="sunnydayicon.png" Grid.Column="0"/>
                         <Label Text="Pogoda" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Grid.Column="1"/>
                     </Grid>
                     

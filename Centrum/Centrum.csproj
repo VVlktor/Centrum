@@ -71,6 +71,7 @@
 	  <None Remove="Resources\Images\settingsicon.png" />
 	  <None Remove="Resources\Images\snowyday.png" />
 	  <None Remove="Resources\Images\sunnyday.png" />
+	  <None Remove="Resources\Images\sunnydayicon.png" />
 	  <None Remove="Resources\Raw\HiddenData.json" />
 	  <None Remove="Resources\Splash\splash.png" />
 	</ItemGroup>

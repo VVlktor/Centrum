@@ -14,6 +14,7 @@ namespace Centrum
         private string WeatherApiKey;
         private string NewsApiKey;
         WeatherData weatherData;
+        bool IsDataLoaded = false;
 
         public MainPage()
         {
@@ -45,6 +46,7 @@ namespace Centrum
             weatherData = await GetWeatherAsync();
             if (weatherData != null)
             {
+                IsDataLoaded = true;
                 widgetPogody.IsVisible = true;
                 LabelMiasto.Text = $"{weatherData.Location.Name}";
                 LabelTemp.Text = $"{weatherData.Current.Temp_c} °C";
@@ -89,7 +91,7 @@ namespace Centrum
 
         private void ShowNewPage(object sender, TappedEventArgs e)
         {
-            var whichPage = e.Parameter as string;//astronomy.json - kiedy wschodzi i zachodzi slonce dodacx do strony pogody, pewnie o tym pamietasz :P
+            var whichPage = e.Parameter as string;
             switch (whichPage)
             {
                 case "Autor":
@@ -108,7 +110,7 @@ namespace Centrum
 
         public void GoToGithub()
         {
-            Launcher.OpenAsync("https://github.com/Nifeel17");
+            Launcher.OpenAsync("https://github.com/VVlktor");
         }
 
         public async void GoToNewsPage()
@@ -118,7 +120,10 @@ namespace Centrum
 
         public async void GoToWeatherPage()
         {
-            await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
+            if (IsDataLoaded)
+            {
+                await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
+            }
         }
     }
 
