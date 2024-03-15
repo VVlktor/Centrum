@@ -103,6 +103,9 @@ namespace Centrum
                 case "Pogoda":
                     GoToWeatherPage();
                     break;
+                case "Notatnik":
+                    GoToNotePage();
+                    break;
                 default:
                     break;
             }
@@ -124,6 +127,11 @@ namespace Centrum
             {
                 await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
             }
+        }
+
+        public async void GoToNotePage()
+        {
+            await Navigation.PushAsync(new NavigationPage(new NotePage()));
         }
     }
 

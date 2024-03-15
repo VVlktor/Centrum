@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Centrum.Pages.NotePage"
+             Title="NotePage">
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="sdsd" x:Name="fddd"/>
+            <CollectionView ItemsSource="{Binding fileNames}" x:Name="ListViewOfFiles">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding nazwa}"/>
+                            <Label Text="sdsd"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

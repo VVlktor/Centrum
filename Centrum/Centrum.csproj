@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Pages\NewsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\NotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PageOfNews.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
