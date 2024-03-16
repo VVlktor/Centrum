@@ -4,12 +4,7 @@ namespace Centrum.Pages;
 
 public partial class NotePage : ContentPage
 {
-    public class Fd
-    {
-        public string nazwa {  get; set; }
-    }
-
-    ObservableCollection<Fd> fileNames  { get; set; }
+    ObservableCollection<string> fileNames  { get; set; } = new ObservableCollection<string>();
 
     public NotePage()
 	{
@@ -21,10 +16,16 @@ public partial class NotePage : ContentPage
 			Directory.CreateDirectory(mainDir);
 		}
         string[] Paths = Directory.GetFiles(mainDir);
-        fileNames = new ObservableCollection<Fd>();
         foreach (string FilePath in Paths)
         {
-            fileNames.Add(new Fd { nazwa = Path.GetFileName(FilePath) });
+            fileNames.Add(Path.GetFileName(FilePath));
         }
+        ListViewOfFiles.ItemsSource = fileNames;
+    }
+
+    private void FileTapped(object sender, TappedEventArgs e)
+    {
+        string tappedFile = e.Parameter as string;
+        gf.Text= tappedFile;
     }
 }

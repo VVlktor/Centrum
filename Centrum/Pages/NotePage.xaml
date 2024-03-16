@@ -6,17 +6,19 @@
 
     <ScrollView>
         <StackLayout>
-            <Label Text="sdsd" x:Name="fddd"/>
             <CollectionView ItemsSource="{Binding fileNames}" x:Name="ListViewOfFiles">
+                <CollectionView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FileTapped" CommandParameter="{Binding .}"/>
+                </CollectionView.GestureRecognizers>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding nazwa}"/>
-                            <Label Text="sdsd"/>
+                            <Label Text="{Binding .}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label x:Name="gf" Text="czy dziala"/>
         </StackLayout>
     </ScrollView>
 
