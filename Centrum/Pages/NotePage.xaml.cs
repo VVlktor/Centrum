@@ -1,31 +1,45 @@
 using System.Collections.ObjectModel;
+using Centrum.Classes;
 
 namespace Centrum.Pages;
 
 public partial class NotePage : ContentPage
 {
-    ObservableCollection<string> fileNames  { get; set; } = new ObservableCollection<string>();
+    ObservableCollection<NoteFile> fileNames  { get; set; } = new ObservableCollection<NoteFile>();
 
     public NotePage()
 	{
 		InitializeComponent();
         BindingContext = this;
+        LoadFiles();
+    }
+
+    public void LoadFiles()
+    {
+        fileNames.Clear();
         string mainDir = Path.Combine(FileSystem.Current.AppDataDirectory, "YourTxtFiles");
-		if (!Directory.Exists(mainDir))
-		{
-			Directory.CreateDirectory(mainDir);
-		}
+        if (!Directory.Exists(mainDir))
+        {
+            Directory.CreateDirectory(mainDir);
+        }
         string[] Paths = Directory.GetFiles(mainDir);
         foreach (string FilePath in Paths)
         {
-            fileNames.Add(Path.GetFileName(FilePath));
+            FileInfo fileInfo = new FileInfo(FilePath);
+            fileNames.Add(new NoteFile { Name = Path.GetFileName(FilePath), LastAccess = fileInfo.LastAccessTime.ToString() });
         }
         ListViewOfFiles.ItemsSource = fileNames;
     }
 
     private void FileTapped(object sender, TappedEventArgs e)
     {
-        string tappedFile = e.Parameter as string;
-        gf.Text= tappedFile;
+        var tappedFile = e.Parameter as NoteFile;
+        gf.Text= tappedFile.Name;
+    }
+
+    private async void AddNewFile(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new NavigationPage(new AddNotePage()));
+        LoadFiles();
     }
 }

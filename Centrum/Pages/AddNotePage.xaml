@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Centrum.Pages.AddNotePage"
+             Title="Nowy plik"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False">
+    <StackLayout>
+        <StackLayout Margin="10,30,10,10">
+            <Label Text="Nazwa pliku"/>
+            <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                <Entry x:Name="FileNameEntry"/>
+            </Border>
+        </StackLayout>
+        <Button Text="Potwierdź" Clicked="CreateFile" BackgroundColor="LightGray" Margin="20,10,20,10"/>
+        <Button Text="Powrót" Clicked="GoBack" BackgroundColor="LightGray" Margin="20,10,20,10"/>
+    </StackLayout>
+</ContentPage>

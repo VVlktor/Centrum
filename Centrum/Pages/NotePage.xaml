@@ -2,23 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Centrum.Pages.NotePage"
-             Title="NotePage">
+             Title="NotePage"
+             NavigationPage.IconColor="Black"
+             NavigationPage.HasBackButton="True">
 
     <ScrollView>
         <StackLayout>
             <CollectionView ItemsSource="{Binding fileNames}" x:Name="ListViewOfFiles">
-                <CollectionView.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FileTapped" CommandParameter="{Binding .}"/>
-                </CollectionView.GestureRecognizers>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding .}"/>
-                        </StackLayout>
+                        <Border Margin="5" Padding="5" MinimumHeightRequest="50" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FileTapped" CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" VerticalOptions="Center"  HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding LastAccess}" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Label x:Name="gf" Text="czy dziala"/>
+            <Button Text="+" Clicked="AddNewFile" FontSize="30" BackgroundColor="LightGray" WidthRequest="70" HeightRequest="70" CornerRadius="50" HorizontalOptions="Center" VerticalOptions="Center"/>
         </StackLayout>
     </ScrollView>
 

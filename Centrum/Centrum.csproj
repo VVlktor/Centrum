@@ -90,6 +90,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AddNotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
