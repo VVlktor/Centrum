@@ -31,15 +31,23 @@ public partial class NotePage : ContentPage
         ListViewOfFiles.ItemsSource = fileNames;
     }
 
-    private void FileTapped(object sender, TappedEventArgs e)
+
+    private async void FileTapped(object sender, TappedEventArgs e)
     {
         var tappedFile = e.Parameter as NoteFile;
         gf.Text= tappedFile.Name;
+        await Navigation.PushAsync(new NavigationPage(new EditNotePage(tappedFile.Name)));
     }
 
     private async void AddNewFile(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new NavigationPage(new AddNotePage()));
+    }
+
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
         LoadFiles();
     }
 }
