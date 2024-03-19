@@ -35,7 +35,6 @@ public partial class NotePage : ContentPage
     private async void FileTapped(object sender, TappedEventArgs e)
     {
         var tappedFile = e.Parameter as NoteFile;
-        gf.Text= tappedFile.Name;
         await Navigation.PushAsync(new NavigationPage(new EditNotePage(tappedFile.Name)));
     }
 

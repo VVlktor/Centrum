@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Centrum.Pages.NotePage"
-             Title="NotePage"
+             Title="Notatnik"
              NavigationPage.IconColor="Black"
              NavigationPage.HasBackButton="True">
 
@@ -23,7 +23,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label x:Name="gf" Text="czy dziala"/>
             <Button Text="+" Clicked="AddNewFile" FontSize="30" BackgroundColor="LightGray" WidthRequest="70" HeightRequest="70" CornerRadius="50" HorizontalOptions="Center" VerticalOptions="Center"/>
         </StackLayout>
     </ScrollView>

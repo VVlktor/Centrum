@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Centrum"
     Shell.FlyoutBehavior="Disabled"
     NavigationPage.HasNavigationBar="True">
-
+    
     <ShellContent
         NavigationPage.HasNavigationBar="True"
         ContentTemplate="{DataTemplate local:MainPage}"

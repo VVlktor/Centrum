@@ -10,8 +10,7 @@ namespace Centrum
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#c9c9c9"));
-            Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#c9c9c9"));
-
+            
             base.OnCreate(savedInstanceState);
         }
     }
