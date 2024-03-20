@@ -5,7 +5,7 @@
              Title=""
              NavigationPage.IconColor="Black">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Info" Clicked="FileInfo"/>
+        <ToolbarItem Text="Info" Clicked="InfoOfFile"/>
         <ToolbarItem Text="Usun" Clicked="DeleteFile"/>
     </ContentPage.ToolbarItems>
     <StackLayout>

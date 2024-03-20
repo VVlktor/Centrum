@@ -17,11 +17,10 @@ public partial class AddNotePage : ContentPage
     private async void CreateFile(object sender, EventArgs e)
     {
         string fileNameFromEntry = FileNameEntry.Text;
-        if (fileNameFromEntry.Length == 0) return;
+        if (fileNameFromEntry == null) return;
         string filePath = Path.Combine(FileSystem.Current.AppDataDirectory,@"YourTxtFiles", fileNameFromEntry);
         filePath = filePath + ".txt";
         File.Create(filePath);
-        ddd.Text = filePath;
         await Navigation.PopModalAsync();
     }
 }

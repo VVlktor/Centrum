@@ -30,11 +30,12 @@ public partial class EditNotePage : ContentPage
     private async void DeleteFile(object sender, EventArgs e)
     {
 		File.Delete(Path.Combine(FileSystem.Current.AppDataDirectory, @"YourTxtFiles", thisFile));
-        await Navigation.PopAsync();
+		await Navigation.PopAsync();
     }
 
-    private void FileInfo(object sender, EventArgs e)
+    private void InfoOfFile(object sender, EventArgs e)
     {
-
+		var info = new FileInfo(Path.Combine(FileSystem.Current.AppDataDirectory, @"YourTxtFiles", thisFile));
+		DisplayAlert($"Infomacje o pliku {info.Name}", $"Data utworzenia: {info.CreationTime}\nOstatni zapis: {info.LastWriteTime}\nRozmiar: {info.Length}", "OK");
     }
 }
