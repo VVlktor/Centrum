@@ -105,6 +105,9 @@
 	  <MauiXaml Update="Pages\PageOfNews.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\WeatherPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

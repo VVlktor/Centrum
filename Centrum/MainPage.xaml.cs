@@ -72,7 +72,8 @@ namespace Centrum
 
         public async Task<WeatherData> GetWeatherAsync()
         {
-            string link = $"https://api.weatherapi.com/v1/forecast.json?key=" + WeatherApiKey+"&q=Warsaw";
+            string location = Preferences.Default.Get("Location", "Warsaw");
+            string link = $"https://api.weatherapi.com/v1/forecast.json?key=" + WeatherApiKey+"&q="+location;
             var response = await _httpClient.GetAsync(link);
             if (!response.IsSuccessStatusCode)
             {
@@ -106,6 +107,9 @@ namespace Centrum
                 case "Notatnik":
                     GoToNotePage();
                     break;
+                case "Ustawienia":
+                    GoToSettings();
+                    break;
                 default:
                     break;
             }
@@ -133,8 +137,10 @@ namespace Centrum
         {
             await Navigation.PushAsync(new NavigationPage(new NotePage()));
         }
+
+        public async void GoToSettings()
+        {
+            await Navigation.PushAsync(new NavigationPage(new SettingsPage()));
+        }
     }
-
-
-    
 }
