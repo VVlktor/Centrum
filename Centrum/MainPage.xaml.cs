@@ -57,7 +57,7 @@ namespace Centrum
                 {
                     ImagePogody.Source = "snowyday.png";
                 }
-                else if (weatherData.Current.Chance_of_rain >= 60 )
+                else if (weatherData.Current.Chance_of_rain >= 70 )
                 {
                     ImagePogody.Source = "rainyday.png";
                 }
@@ -110,6 +110,8 @@ namespace Centrum
                 case "Ustawienia":
                     GoToSettings();
                     break;
+                case "Nauka":
+                    GoToLearning();
                 default:
                     break;
             }
@@ -141,6 +143,11 @@ namespace Centrum
         public async void GoToSettings()
         {
             await Navigation.PushAsync(new NavigationPage(new SettingsPage()));
+        }
+
+        public async void GoToLearning()
+        {
+            await Navigation.PushAsync(new NavigationPage(new LearningPage()));
         }
     }
 }

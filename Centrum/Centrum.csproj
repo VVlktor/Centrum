@@ -65,6 +65,7 @@
 	  <None Remove="Resources\AppIcon\myappicon.png" />
 	  <None Remove="Resources\Images\bluetoothicon.png" />
 	  <None Remove="Resources\Images\githubicon.png" />
+	  <None Remove="Resources\Images\learningicon.png" />
 	  <None Remove="Resources\Images\newsicon.png" />
 	  <None Remove="Resources\Images\noteicon.png" />
 	  <None Remove="Resources\Images\rainyday.png" />
@@ -94,6 +95,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditNotePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LearningPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewsPage.xaml">
