@@ -112,6 +112,7 @@ namespace Centrum
                     break;
                 case "Nauka":
                     GoToLearning();
+                    break;
                 default:
                     break;
             }
