@@ -6,4 +6,9 @@ public partial class LearningPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void AnswerClicked(object sender, TappedEventArgs e)
+    {
+		var whichAnswer = e.Parameter as string;
+    }
 }
