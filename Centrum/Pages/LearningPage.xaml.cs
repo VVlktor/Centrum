@@ -4,22 +4,58 @@ namespace Centrum.Pages;
 
 public partial class LearningPage : ContentPage
 {
+    string[,] Characters = { { "あ", "a" }, { "い", "i" }, { "う", "u" }, { "え", "e" }, { "お", "o" }, { "か", "ka" }, { "き", "ki" }, { "く", "ku" }, { "け", "ke" }, { "こ", "ko" }, { "さ", "sa" }, { "し", "shi" }, { "す", "su" }, { "せ", "se" }, { "そ", "so" }, { "た", "ta" }, { "ち", "chi" }, { "つ", "tsu" }, { "て", "te" }, { "と", "to" }, { "な", "na" }, { "に", "ni" }, { "ぬ", "nu" }, { "ね", "ne" }, { "の", "no" }, { "は", "ha" }, { "ひ", "hi" }, { "ふ", "fu" }, { "へ", "he" }, { "ほ", "ho" }, { "ま", "ma" }, { "み", "mi" }, { "む", "mu" }, { "め", "me" }, { "も", "mo" }, { "や", "ya" }, { "ゆ", "yu" }, { "よ", "yo" }, { "ら", "ra" }, { "り", "ri" }, { "る", "ru" }, { "れ", "re" }, { "ろ", "ro" }, { "わ", "wa" }, { "を", "o" }, { "ん", "n" } };
+    int correctAnswer = 0;
+
+    Dictionary<int, Label> przyciskiOdpowiedzi;
 	public LearningPage()
 	{
 		InitializeComponent();
-        string[,] Characters = { { "あ", "a" }, { "い", "i" }, { "う", "u" }, { "え", "e" }, { "お", "o" }, { "か", "ka" }, { "き", "ki" }, { "く", "ku" }, { "け", "ke" }, { "こ", "ko" }, { "さ", "sa" }, { "し", "shi" }, { "す", "su" }, { "せ", "se" }, { "そ", "so" }, { "た", "ta" }, { "ち", "chi" }, { "つ", "tsu" }, { "て", "te" }, { "と", "to" }, { "な", "na" }, { "に", "ni" }, { "ぬ", "nu" }, { "ね", "ne" }, { "の", "no" }, { "は", "ha" }, { "ひ", "hi" }, { "ふ", "fu" }, { "へ", "he" }, { "ほ", "ho" }, { "ま", "ma" }, { "み", "mi" }, { "む", "mu" }, { "め", "me" }, { "も", "mo" }, { "や", "ya" }, { "ゆ", "yu" }, { "よ", "yo" }, { "ら", "ra" }, { "り", "ri" }, { "る", "ru" }, { "れ", "re" }, { "ろ", "ro" }, { "わ", "wa" }, { "を", "o" }, { "ん", "n" } };
-        for (int i=0; i<44; i=i+4)
+        przyciskiOdpowiedzi = new Dictionary<int, Label>()
         {
-            StackLayout stackRow = new StackLayout() { Orientation=StackOrientation.Horizontal, HorizontalOptions=LayoutOptions.Center };
+            { 1, Odpowiedz1 },
+            { 2, Odpowiedz2 },
+            { 3, Odpowiedz3 },
+            { 4, Odpowiedz4 }
+        };
+        AddTableOfCharacters();
+        NextQuestion();
+    }
+
+    private void AnswerClicked(object sender, TappedEventArgs e)
+    {
+		var whichAnswer = e.Parameter as string;
+        
+        NextQuestion();
+    }
+
+    public void NextQuestion()
+    {
+        Random rnd = new Random();
+        Odpowiedz1.Text =$"{Characters[rnd.Next(0,Characters.Length/2), 1]}";
+        Odpowiedz2.Text =$"{Characters[rnd.Next(0,Characters.Length/2), 1]}";
+        Odpowiedz3.Text = $"{Characters[rnd.Next(0, Characters.Length/2), 1]}";
+        Odpowiedz4.Text = $"{Characters[rnd.Next(0, Characters.Length/2), 1]}";
+        correctAnswer = rnd.Next(1,5);
+        int whichAnswer = rnd.Next(0, Characters.Length/2);
+        przyciskiOdpowiedzi[correctAnswer].Text = $"{Characters[whichAnswer, 1]}";
+        QuestionLabel.Text = $"{Characters[whichAnswer,0]}";
+    }
+
+    public void AddTableOfCharacters()
+    {
+        for (int i = 0; i < 44; i = i + 4)
+        {
+            StackLayout stackRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.Center };
             for (int j = 0; j < 4; j++)
             {
                 StackLayout WewnetrznyLayout = new StackLayout();
 
-                Label labelJap = new Label 
-                { 
+                Label labelJap = new Label
+                {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    FontSize=20,
-                    Text = Characters[i+j,0]
+                    FontSize = 20,
+                    Text = Characters[i + j, 0]
                 };
 
                 Label labelEng = new Label
@@ -45,13 +81,13 @@ public partial class LearningPage : ContentPage
                 border.Content = WewnetrznyLayout;
                 stackRow.Add(border);
 
-                
+
             }
             LayoutOfCharacters.Add(stackRow);
-            
+
         }
         StackLayout stackLastRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.Center };
-        for (int i =44; i<46; i++)
+        for (int i = 44; i < 46; i++)
         {
             StackLayout WewnetrznyLayout = new StackLayout();
 
@@ -87,10 +123,4 @@ public partial class LearningPage : ContentPage
         }
         LayoutOfCharacters.Add(stackLastRow);
     }
-
-    private void AnswerClicked(object sender, TappedEventArgs e)
-    {
-		var whichAnswer = e.Parameter as string;
-    }
-
 }
