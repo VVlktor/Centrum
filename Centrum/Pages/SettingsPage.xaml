@@ -24,5 +24,21 @@
                 <Label x:Name="LabelLocationChanged" IsVisible="False" Margin="10,5,10,0" LineBreakMode="WordWrap" Text="Zmiana zostanie zaimplementowana po ponownym uruchomienu aplikacji!" FontSize="16" TextColor="Red"/>
             </StackLayout>
         </Border>
-        </StackLayout>
+
+        <Border Margin="5" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+            <StackLayout>
+                <Label Text="Język nauki" Margin="5"/>
+                <Picker SelectedIndexChanged="ChangedLearningLanguage" x:Name="LearningLanguagePicker" Margin="10,0,10,5" Title="Wybierz język nauki">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Japoński</x:String>
+                            <x:String>Grecki</x:String>
+                            <x:String>Arabski</x:String>
+                            <x:String>Rosyjski</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+        </Border>
+    </StackLayout>
 </ContentPage>
