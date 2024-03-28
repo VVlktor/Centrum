@@ -15,7 +15,9 @@ public partial class EditNotePage : ContentPage
 	{
 		string filePath= Path.Combine(FileSystem.Current.AppDataDirectory, @"YourTxtFiles", thisFile);
         string content = File.ReadAllText(filePath);
-		NoteEditor.Text = content;
+		string noteFont = Preferences.Default.Get("NoteFont", "OpenSansRegular");
+		NoteEditor.FontFamily = noteFont;
+        NoteEditor.Text = content;
 	}
 
     protected override void OnDisappearing()

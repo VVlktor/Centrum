@@ -7,11 +7,20 @@ public partial class SettingsPage : ContentPage
 	public SettingsPage()
 	{
 		InitializeComponent();
-		string choosenCapital = Preferences.Default.Get("Location", "Warsaw");
-		LocationPicker.SelectedIndex = ListOfCapitals.IndexOf(choosenCapital);
-		LearningLanguagePicker.SelectedItem = Preferences.Default.Get("LearningLanguage", "Japoñski");
-		LabelLocationChanged.IsVisible = false;
+        GetAllSetting();
 	}
+
+    public void GetAllSetting()
+    {
+        string choosenCapital = Preferences.Default.Get("Location", "Warsaw");
+        LocationPicker.SelectedIndex = ListOfCapitals.IndexOf(choosenCapital);
+        string unchangedFont = Preferences.Default.Get("NoteFont", "Serif");
+        char[] changedFont = unchangedFont.ToCharArray();
+        changedFont[0] = char.ToUpper(changedFont[0]);
+        NoteFontPicker.SelectedItem = new string(changedFont);
+        LearningLanguagePicker.SelectedItem = Preferences.Default.Get("LearningLanguage", "Japoñski");
+        LabelLocationChanged.IsVisible = false;
+    }
 
     private void ChangedLocation(object sender, EventArgs e)
     {
@@ -27,5 +36,16 @@ public partial class SettingsPage : ContentPage
 			string lng=(string)picker.SelectedItem;
 			Preferences.Default.Set("LearningLanguage",lng);
 		}
+    }
+
+    private void ChangedNoteFont(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        if (picker.SelectedIndex != -1)
+        {
+            string newFont = (string)picker.SelectedItem;
+			newFont = newFont.ToLower();
+            Preferences.Default.Set("NoteFont", newFont);
+        }
     }
 }

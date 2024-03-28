@@ -15,6 +15,8 @@ namespace Centrum
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Oswald-Medium.ttf", "oswald");
+                    fonts.AddFont("Inconsolata-VariableFont.ttf", "inconsolata");
                 });
 
 #if DEBUG

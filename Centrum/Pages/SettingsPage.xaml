@@ -40,5 +40,23 @@
                 </Picker>
             </StackLayout>
         </Border>
+
+
+        <Border Margin="5" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+            <StackLayout>
+                <Label Text="Czcionka w notatniku" Margin="5"/>
+                <Picker SelectedIndexChanged="ChangedNoteFont" x:Name="NoteFontPicker" Margin="10,0,10,5" Title="Wybierz czcionkę notatnika">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Monospace</x:String>
+                            <x:String>Serif</x:String>
+                            <x:String>Sans-serif</x:String>
+                            <x:String>Oswald</x:String>
+                            <x:String>Inconsolata</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+        </Border>
     </StackLayout>
 </ContentPage>
