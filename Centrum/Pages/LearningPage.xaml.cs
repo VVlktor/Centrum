@@ -8,7 +8,9 @@ public partial class LearningPage : ContentPage
     int correctAnswer = 0;
 
     Dictionary<int, Label> przyciskiOdpowiedzi;
-	public LearningPage()
+    Dictionary<int, Border> borderyOdpowiedzi;
+
+    public LearningPage()
 	{
 		InitializeComponent();
         SetCharactersArray();
@@ -19,26 +21,64 @@ public partial class LearningPage : ContentPage
             { 3, Odpowiedz3 },
             { 4, Odpowiedz4 }
         };
+        borderyOdpowiedzi = new Dictionary<int, Border>()
+        {
+            { 1, BorderOdpowiedz1 },
+            { 2, BorderOdpowiedz2 },
+            { 3, BorderOdpowiedz3 },
+            { 4, BorderOdpowiedz4 }
+        };
         AddTableOfCharacters();
         NextQuestion();
     }
 
-    private void AnswerClicked(object sender, TappedEventArgs e)
+    private async void AnswerClicked(object sender, TappedEventArgs e)
     {
 		var whichAnswer = e.Parameter as string;
-        
+        await CheckAnswer(whichAnswer, sender);
         NextQuestion();
+    }
+
+    public async Task CheckAnswer(string answ, object sender)
+    {
+        var borderRec = sender as Border;
+        if (borderRec != null)
+        {
+            if (answ == correctAnswer.ToString())
+            {
+                borderRec.BackgroundColor = Color.FromArgb("#5ad647");
+                await Task.Delay(1000);
+                borderRec.BackgroundColor = Color.FromArgb("#ffffff");
+            }
+            else
+            {
+                borderRec.BackgroundColor = Color.FromArgb("#fa2828");
+                borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#5ad647");
+                await Task.Delay(1000);
+                borderRec.BackgroundColor = Color.FromArgb("#ffffff");
+                borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#ffffff");
+            }
+            Task.Delay(400);
+        }
     }
 
     public void NextQuestion()
     {
         Random rnd = new Random();
-        Odpowiedz1.Text =$"{Characters[rnd.Next(0,Characters.Length/2), 1]}";
-        Odpowiedz2.Text =$"{Characters[rnd.Next(0,Characters.Length/2), 1]}";
-        Odpowiedz3.Text = $"{Characters[rnd.Next(0, Characters.Length/2), 1]}";
-        Odpowiedz4.Text = $"{Characters[rnd.Next(0, Characters.Length/2), 1]}";
+        List<int> usedAnswers = new List<int>();
+        int whichAnswer = rnd.Next(0, Characters.Length / 2);
+        usedAnswers.Add(whichAnswer);
+        for (int j=1; j<5; j++)
+        {
+            int wylosowanaOdp = rnd.Next(0, Characters.Length / 2);
+            while (usedAnswers.Contains(wylosowanaOdp))
+            {
+                wylosowanaOdp = rnd.Next(0, Characters.Length / 2);
+            }
+            usedAnswers.Add(wylosowanaOdp);
+            przyciskiOdpowiedzi[j].Text = $"{Characters[wylosowanaOdp, 1]}";
+        }
         correctAnswer = rnd.Next(1,5);
-        int whichAnswer = rnd.Next(0, Characters.Length/2);
         przyciskiOdpowiedzi[correctAnswer].Text = $"{Characters[whichAnswer, 1]}";
         QuestionLabel.Text = $"{Characters[whichAnswer,0]}";
     }

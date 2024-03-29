@@ -18,20 +18,20 @@
                 </toolkit:Expander>
             </Border>
 
-            <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" WidthRequest="200" Margin="0,20,0,0" HeightRequest="200">
+            <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" WidthRequest="200" Margin="0,25,0,0" HeightRequest="200">
                 <StackLayout>
                     <Label x:Name="QuestionLabel" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="40"/>
                 </StackLayout>
             </Border>
 
-            <Grid>
+            <Grid Margin="0,15,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackLayout Grid.Column="0" Orientation="Vertical">
-                    <Border StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                    <Border x:Name="BorderOdpowiedz1" StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AnswerClicked" CommandParameter="1"/>
                         </Border.GestureRecognizers>
@@ -39,7 +39,7 @@
                             <Label x:Name="Odpowiedz1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         </StackLayout>
                     </Border>
-                    <Border StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                    <Border x:Name="BorderOdpowiedz3" StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AnswerClicked" CommandParameter="3"/>
                         </Border.GestureRecognizers>
@@ -50,7 +50,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Orientation="Vertical">
-                    <Border StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                    <Border x:Name="BorderOdpowiedz2" StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AnswerClicked" CommandParameter="2"/>
                         </Border.GestureRecognizers>
@@ -58,7 +58,7 @@
                             <Label x:Name="Odpowiedz2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                         </StackLayout>
                     </Border>
-                    <Border StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
+                    <Border x:Name="BorderOdpowiedz4" StrokeThickness="2" HeightRequest="70" Margin="10" Stroke="LightGray" StrokeShape="RoundRectangle 5">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AnswerClicked" CommandParameter="4"/>
                         </Border.GestureRecognizers>
