@@ -18,6 +18,7 @@ public partial class SettingsPage : ContentPage
         char[] changedFont = unchangedFont.ToCharArray();
         changedFont[0] = char.ToUpper(changedFont[0]);
         NoteFontPicker.SelectedItem = new string(changedFont);
+        LearningVibration.IsToggled = Preferences.Default.Get("LearningVibration", true);
         LearningLanguagePicker.SelectedItem = Preferences.Default.Get("LearningLanguage", "Japoñski");
         LabelLocationChanged.IsVisible = false;
     }
@@ -47,5 +48,11 @@ public partial class SettingsPage : ContentPage
 			newFont = newFont.ToLower();
             Preferences.Default.Set("NoteFont", newFont);
         }
+    }
+
+    private void LearningVibrationToggled(object sender, ToggledEventArgs e)
+    {
+        bool togglerStatus = LearningVibration.IsToggled;
+        Preferences.Default.Set("LearningVibration", togglerStatus);
     }
 }

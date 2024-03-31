@@ -58,5 +58,13 @@
                 </Picker>
             </StackLayout>
         </Border>
+
+
+        <Border Margin="5" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+            <StackLayout>
+                <Label Text="Wibracje przy nauce" Margin="5"/>
+                <Switch IsToggled="True" x:Name="LearningVibration" HorizontalOptions="Start" Margin="10,0,0,0" Toggled="LearningVibrationToggled"/>
+            </StackLayout>
+        </Border>
     </StackLayout>
 </ContentPage>

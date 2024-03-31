@@ -6,6 +6,8 @@ public partial class LearningPage : ContentPage
 {
     string[,] Characters;
     int correctAnswer = 0;
+    bool canBeChecked = true;
+    bool areVibrationsOn = Preferences.Default.Get("LearningVibration", true);
 
     Dictionary<int, Label> przyciskiOdpowiedzi;
     Dictionary<int, Border> borderyOdpowiedzi;
@@ -34,9 +36,15 @@ public partial class LearningPage : ContentPage
 
     private async void AnswerClicked(object sender, TappedEventArgs e)
     {
-		var whichAnswer = e.Parameter as string;
-        await CheckAnswer(whichAnswer, sender);
-        NextQuestion();
+        if (canBeChecked)
+        {
+            canBeChecked = false;
+            var whichAnswer = e.Parameter as string;
+            await CheckAnswer(whichAnswer, sender);
+            NextQuestion();
+            canBeChecked = true;
+        }
+		
     }
 
     public async Task CheckAnswer(string answ, object sender)
@@ -47,6 +55,11 @@ public partial class LearningPage : ContentPage
             if (answ == correctAnswer.ToString())
             {
                 borderRec.BackgroundColor = Color.FromArgb("#5ad647");
+                if (areVibrationsOn)
+                {
+                    TimeSpan vibrationLength = TimeSpan.FromSeconds(0.5);
+                    Vibration.Default.Vibrate(vibrationLength);
+                }
                 await Task.Delay(1000);
                 borderRec.BackgroundColor = Color.FromArgb("#ffffff");
             }
@@ -54,7 +67,18 @@ public partial class LearningPage : ContentPage
             {
                 borderRec.BackgroundColor = Color.FromArgb("#fa2828");
                 borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#5ad647");
-                await Task.Delay(1000);
+                if (areVibrationsOn)
+                {
+                    TimeSpan vibrationLength = TimeSpan.FromSeconds(0.15);
+                    Vibration.Default.Vibrate(vibrationLength);
+                }
+                await Task.Delay(200);
+                if (areVibrationsOn)
+                {
+                    TimeSpan vibrationLength = TimeSpan.FromSeconds(0.15);
+                    Vibration.Default.Vibrate(vibrationLength);
+                }
+                await Task.Delay(800);
                 borderRec.BackgroundColor = Color.FromArgb("#ffffff");
                 borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#ffffff");
             }
