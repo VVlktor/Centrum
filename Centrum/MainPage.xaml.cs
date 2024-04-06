@@ -13,6 +13,7 @@ namespace Centrum
         private readonly HttpClient _httpClient = new HttpClient();
         private string WeatherApiKey;
         private string NewsApiKey;
+        private string CurrencyApiKey;
         WeatherData weatherData;
         bool IsDataLoaded = false;
 
@@ -33,7 +34,17 @@ namespace Centrum
                 HiddenDataTokens obj = JsonConvert.DeserializeObject<HiddenDataTokens>(fileContent);
                 WeatherApiKey = obj.WEATHER_API_KEY;
                 NewsApiKey = obj.NEWS_API_KEY;
-                LoadWeatherData();
+                CurrencyApiKey = obj.CURRENCY_API_KEY;
+                if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+                {
+                    LoadWeatherData();
+                }
+                else
+                {
+                    indicatorPogody.IsVisible=false;
+                    labelDostepNet.IsVisible = true;
+                }
+                
             }
             catch (Exception exception)
             {
@@ -113,6 +124,9 @@ namespace Centrum
                 case "Nauka":
                     GoToLearning();
                     break;
+                case "Waluta":
+                    GoToCurrencyPage();
+                    break;
                 default:
                     break;
             }
@@ -125,12 +139,16 @@ namespace Centrum
 
         public async void GoToNewsPage()
         {
-            await Navigation.PushAsync(new NavigationPage(new NewsPage(NewsApiKey)));
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+            { 
+                await Navigation.PushAsync(new NavigationPage(new NewsPage(NewsApiKey)));
+            }
+                
         }
 
         public async void GoToWeatherPage()
         {
-            if (IsDataLoaded)
+            if (IsDataLoaded && Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
             {
                 await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
             }
@@ -149,6 +167,11 @@ namespace Centrum
         public async void GoToLearning()
         {
             await Navigation.PushAsync(new NavigationPage(new LearningPage()));
+        }
+
+        public async void GoToCurrencyPage()
+        {
+            await Navigation.PushAsync(new NavigationPage(new CurrencyPage(CurrencyApiKey)));
         }
     }
 }

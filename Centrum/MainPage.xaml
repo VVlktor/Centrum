@@ -24,6 +24,7 @@
                         <Label HorizontalOptions="End" VerticalOptions="End" Text="Warsaw" x:Name="LabelMiasto" Margin="5" FontSize="36"/>
                     </StackLayout>
                 </Grid>
+                <Label x:Name="labelDostepNet" Text="Brak dostępu do internetu" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="false"/>
             </StackLayout>
         </Border>
         

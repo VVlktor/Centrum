@@ -38,6 +38,6 @@ public partial class EditNotePage : ContentPage
     private void InfoOfFile(object sender, EventArgs e)
     {
 		var info = new FileInfo(Path.Combine(FileSystem.Current.AppDataDirectory, @"YourTxtFiles", thisFile));
-		DisplayAlert($"Infomacje o pliku {info.Name}", $"Data utworzenia: {info.CreationTime}\nOstatni zapis: {info.LastWriteTime}\nRozmiar: {info.Length}", "OK");
+		DisplayAlert($"Infomacje o pliku {info.Name}", $"Ostatni zapis: {info.LastWriteTime}\nRozmiar: {info.Length}", "OK");
     }
 }

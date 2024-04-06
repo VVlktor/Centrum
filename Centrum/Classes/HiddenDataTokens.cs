@@ -14,5 +14,8 @@ namespace Centrum.Classes
 
        [JsonPropertyName("NEWS_API_KEY")]
        public string NEWS_API_KEY { get; set; }
+
+       [JsonPropertyName("CURRENCY_API_KEY")]
+       public string CURRENCY_API_KEY { get; set;}
     }
 }
