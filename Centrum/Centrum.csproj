@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Fonts\Inconsolata-VariableFont.ttf" />
 	  <None Remove="Resources\Fonts\Oswald-Medium.ttf" />
 	  <None Remove="Resources\Images\bluetoothicon.png" />
+	  <None Remove="Resources\Images\currencyicon.png" />
 	  <None Remove="Resources\Images\githubicon.png" />
 	  <None Remove="Resources\Images\learningicon.png" />
 	  <None Remove="Resources\Images\newsicon.png" />
