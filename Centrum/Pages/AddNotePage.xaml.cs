@@ -20,7 +20,7 @@ public partial class AddNotePage : ContentPage
         if (fileNameFromEntry == null) return;
         string filePath = Path.Combine(FileSystem.Current.AppDataDirectory,@"YourTxtFiles", fileNameFromEntry);
         filePath = filePath + ".txt";
-        File.Create(filePath);
+        using (FileStream fs = File.Create(filePath)) { }
         await Navigation.PopModalAsync();
     }
 }
