@@ -13,7 +13,9 @@ namespace Centrum.Classes
         [JsonPropertyName("time_last_update_utc")]
         public string lastTimeUpdate { get; set; }
         [JsonPropertyName("conversion_rates")]
-        public Dictionary<string,double> coversionRates { get; set; }
+        public Dictionary<string, double> coversionRates { get; set; }
+
+        public List<KeyValuePair<string,double>> coversionRatesList { get; set; }
 
     }
 }

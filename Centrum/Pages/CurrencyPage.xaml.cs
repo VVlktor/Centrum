@@ -12,9 +12,12 @@ public partial class CurrencyPage : TabbedPage
     public CurrencyPage(string GetCurrencyApiKey)
 	{
 		CurrencyApiKey = GetCurrencyApiKey;
+        BindingContext = this;
 		InitializeComponent();
         GetData();
     }
+
+
 
 	public async void GetData()
 	{
@@ -26,11 +29,16 @@ public partial class CurrencyPage : TabbedPage
         }
         var content = await response.Content.ReadAsStringAsync();
         dataOfCurrency=JsonSerializer.Deserialize<CurrencyData>(content);
+        dataOfCurrency.coversionRatesList = dataOfCurrency.coversionRates.ToList();
+        
         SetData();
     }
 
     public void SetData()
     {
-        temporaryLabel.Text = dataOfCurrency.coversionRates["USD"].ToString();
+        List<string> waluty = new List<string>{ "USD", "AWG", "AZN", "COP" };
+        CurrenctCollView.ItemsSource=dataOfCurrency.coversionRatesList.Where(d => waluty.Contains(d.Key)).ToList();
     }
+
+    
 }
