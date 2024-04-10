@@ -171,7 +171,10 @@ namespace Centrum
 
         public async void GoToCurrencyPage()
         {
-            await Navigation.PushAsync(new NavigationPage(new CurrencyPage(CurrencyApiKey)));
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+            {
+                await Navigation.PushAsync(new NavigationPage(new CurrencyPage(CurrencyApiKey)));
+            }
         }
     }
 }
