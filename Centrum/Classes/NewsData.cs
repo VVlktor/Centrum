@@ -35,6 +35,8 @@ namespace Centrum.Classes
 
         [JsonPropertyName("source_country")]
         public string SourceCountry { get; set; }
+
+        public bool IsImageVisible { get; set; }
     }
 
     public class NewsData

@@ -18,7 +18,7 @@
                             <StackLayout>
                                 <Label FontSize="18" FontAttributes="Bold" Text="{Binding Title}" />
                                 <Label Text="{Binding PublishDate}" />
-                                <Image Margin="2" Source="{Binding Image}" />
+                                <Image IsVisible="{Binding IsImageVisible}" Margin="2" Source="{Binding Image}" />
                             </StackLayout>
                         </Border>
                     </DataTemplate>

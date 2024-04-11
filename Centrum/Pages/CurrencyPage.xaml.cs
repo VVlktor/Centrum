@@ -38,7 +38,9 @@ public partial class CurrencyPage : TabbedPage
         List<string> waluty = new List<string>{ "USD", "EUR", "JPY", "GBP", "CNY", "AUD", "CAD", "CHF", "HKD", "SGD", "SEK", "KRW", "NOK", "NZD", "INR", "MXN", "TWD", "ZAR", "BRL", "DKK" };
         CurrencyCollView.ItemsSource = dataOfCurrency.coversionRatesList.Where(d => waluty.Contains(d.Key)).ToList();
         IndicatorCollView.IsVisible = false;
+        IndicatorCollView2.IsVisible=false;
         CurrencyCollView.IsVisible = true;
+        CurrCalc.IsVisible = true;
     }
 
    
@@ -46,5 +48,17 @@ public partial class CurrencyPage : TabbedPage
     {
         var curr = (KeyValuePair<string, double>)e.Parameter;
         await DisplayAlert($"Infomacje o {curr.Key}", $"Cena (za 1 PLN): {curr.Value:0.00} {curr.Key}\nCena (za 1 {curr.Key}): {(1/curr.Value):0.00} PLN\nOstatnia aktualizacja: {dataOfCurrency.lastTimeUpdate}", "OK");
+    }
+
+    private void PLNchanged(object sender, TextChangedEventArgs e)
+    {
+        double curr = double.Parse(e.NewTextValue);
+        KalkEntryWaluta.Text = $"{curr*0.23}";
+    }
+
+    private void CurrChanged(object sender, TextChangedEventArgs e)
+    {
+        double curr = double.Parse(e.NewTextValue);
+        KalkEntryPLN.Text = $"{curr * 0.23}";
     }
 }

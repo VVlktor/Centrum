@@ -66,5 +66,14 @@
                 <Switch IsToggled="True" x:Name="LearningVibration" HorizontalOptions="Start" Margin="10,0,0,0" Toggled="LearningVibrationToggled"/>
             </StackLayout>
         </Border>
+
+
+        <Border Margin="5" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Padding="10">
+            <StackLayout>
+                <Label Text="Zdjęcia przy przeglądaniu newsów" Margin="5"/>
+                <Label Text="Uwaga! Możliwe ścinki!" FontSize="4" Margin="5"/>
+                <Switch IsToggled="True" x:Name="NewsImage" HorizontalOptions="Start" Margin="10,0,0,0" Toggled="NewsImageToggled"/>
+            </StackLayout>
+        </Border>
     </StackLayout>
 </ContentPage>

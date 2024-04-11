@@ -41,12 +41,27 @@
             </StackLayout>
         </ScrollView>
     </ContentPage>
-    
-    
-    
+
+
+
     <ContentPage Title="Klakulator walut">
         <StackLayout>
-            <Label Text="klakulator walut tu"/>
+            <ActivityIndicator IsRunning="True" x:Name="IndicatorCollView2"/>
+            <StackLayout x:Name="CurrCalc" IsVisible="False" Orientation="Horizontal" Margin="10,20,10,10" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                <StackLayout Orientation="Vertical" Margin="10">
+                    <Border StrokeThickness="2" Stroke="LightGray" MinimumWidthRequest="80" StrokeShape="RoundRectangle 5" Margin="5">
+                        <Entry Keyboard="Numeric" x:Name="KalkEntryPLN" TextChanged="PLNchanged"/>
+                    </Border>
+                    <Label Text="PLN" HorizontalOptions="Center"/>
+                </StackLayout>
+                <Label Text="=" VerticalOptions="Center" FontSize="24"/>
+                <StackLayout Orientation="Vertical" Margin="10">
+                    <Border StrokeThickness="2" Stroke="LightGray" MinimumWidthRequest="80" StrokeShape="RoundRectangle 5" Margin="5">
+                        <Entry Keyboard="Numeric" x:Name="KalkEntryWaluta" TextChanged="CurrChanged" />
+                    </Border>
+                    <Label Text="WALUTA" x:Name="LabelWalutaKalk" HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage>
 </TabbedPage>
