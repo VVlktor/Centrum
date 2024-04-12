@@ -75,5 +75,6 @@
                 <Switch IsToggled="True" x:Name="NewsImage" HorizontalOptions="Start" Margin="10,0,0,0" Toggled="NewsImageToggled"/>
             </StackLayout>
         </Border>
+
     </StackLayout>
 </ContentPage>

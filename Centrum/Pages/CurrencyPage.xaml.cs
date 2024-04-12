@@ -8,6 +8,7 @@ public partial class CurrencyPage : TabbedPage
 	string CurrencyApiKey;
     private readonly HttpClient _httpClient = new HttpClient();
     CurrencyData dataOfCurrency;
+    bool zmieniam = false;
 
     public CurrencyPage(string GetCurrencyApiKey)
 	{
@@ -36,6 +37,8 @@ public partial class CurrencyPage : TabbedPage
     public void SetData()
     {
         List<string> waluty = new List<string>{ "USD", "EUR", "JPY", "GBP", "CNY", "AUD", "CAD", "CHF", "HKD", "SGD", "SEK", "KRW", "NOK", "NZD", "INR", "MXN", "TWD", "ZAR", "BRL", "DKK" };
+        CurrencyPicker.ItemsSource=waluty;
+        CurrencyPicker.SelectedItem = waluty[1];
         CurrencyCollView.ItemsSource = dataOfCurrency.coversionRatesList.Where(d => waluty.Contains(d.Key)).ToList();
         IndicatorCollView.IsVisible = false;
         IndicatorCollView2.IsVisible=false;
@@ -52,13 +55,37 @@ public partial class CurrencyPage : TabbedPage
 
     private void PLNchanged(object sender, TextChangedEventArgs e)
     {
-        double curr = double.Parse(e.NewTextValue);
-        KalkEntryWaluta.Text = $"{curr*0.23}";
+        if (!zmieniam)
+        {
+            zmieniam = true;
+            double curr;
+            if (double.TryParse(e.NewTextValue, out curr))
+            {
+                KalkEntryWaluta.Text = $"{string.Format("{0:0.00}", curr / dataOfCurrency.coversionRates[(string)CurrencyPicker.SelectedItem])}";
+            }
+            else
+            {
+                KalkEntryPLN.Text = string.Empty;
+            }
+            zmieniam =false;
+        }
     }
 
     private void CurrChanged(object sender, TextChangedEventArgs e)
     {
-        double curr = double.Parse(e.NewTextValue);
-        KalkEntryPLN.Text = $"{curr * 0.23}";
+        if (!zmieniam)
+        {
+            zmieniam = true;
+            double curr;
+            if (double.TryParse(e.NewTextValue, out curr))
+            {
+                KalkEntryPLN.Text = $"{string.Format("{0:0.00}",curr / dataOfCurrency.coversionRates[(string)CurrencyPicker.SelectedItem])}";
+            }
+            else
+            {
+                KalkEntryWaluta.Text = string.Empty;
+            }
+            zmieniam = false;
+        }
     }
 }

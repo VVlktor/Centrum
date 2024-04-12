@@ -32,12 +32,12 @@ public partial class NewsPage : ContentPage
         }
         var content = await response.Content.ReadAsStringAsync();
         News = System.Text.Json.JsonSerializer.Deserialize<NewsData>(content);
-        bool isImageVisible = bool.Parse(Preferences.Default.Get("isNewsImageVisible", "False"));
+        bool isImageVisible = Preferences.Default.Get("isNewsImageVisible", false);
         foreach (var h in News.News)
         {
             h.IsImageVisible=isImageVisible;
         }
-        CollectionOfNews = new ObservableCollection<NewsItem> { News.News[0], News.News[1], News.News[2], News.News[3], News.News[4], News.News[5] };
+        CollectionOfNews = new ObservableCollection<NewsItem> { News.News[0], News.News[1], News.News[2], News.News[3], News.News[4], News.News[5], News.News[6] };
         BindingContext = this;
     }
 
