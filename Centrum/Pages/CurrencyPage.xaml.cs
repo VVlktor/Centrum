@@ -88,4 +88,10 @@ public partial class CurrencyPage : TabbedPage
             zmieniam = false;
         }
     }
+
+    private void changedCurr(object sender, EventArgs e)
+    {
+        KalkEntryPLN.Text = "";
+        KalkEntryWaluta.Text = "";
+    }
 }

@@ -132,9 +132,14 @@ namespace Centrum
             }
         }
 
-        public void GoToGithub()
+        public async void GoToGithub()
         {
-            Launcher.OpenAsync("https://github.com/VVlktor");
+            bool czyPrzejsc = await DisplayAlert("Czy kontynuować?", "Opuścisz aplikacje", "Tak", "Nie");
+            if (czyPrzejsc)
+            {
+                Launcher.OpenAsync("https://github.com/VVlktor");
+            }
+            
         }
 
         public async void GoToNewsPage()

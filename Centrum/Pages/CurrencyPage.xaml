@@ -65,7 +65,7 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center">
                     <Border StrokeThickness="2" Stroke="LightGray" MinimumWidthRequest="80" StrokeShape="RoundRectangle 5" Margin="5">
-                        <Picker x:Name="CurrencyPicker" />
+                        <Picker x:Name="CurrencyPicker" SelectedIndexChanged="changedCurr"/>
                     </Border>
                     <Label HorizontalOptions="Center" Text="Wybierz walute"/>
                 </StackLayout>

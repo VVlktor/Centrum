@@ -5,8 +5,8 @@
              Title=""
              NavigationPage.IconColor="Black">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Info" Clicked="InfoOfFile"/>
-        <ToolbarItem Text="Usun" Clicked="DeleteFile"/>
+        <ToolbarItem Text="Info" Order="Secondary" Clicked="InfoOfFile"/>
+        <ToolbarItem Text="Usun" Order="Secondary" Clicked="DeleteFile"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
         <Border Margin="3,0,3,20">

@@ -6,7 +6,7 @@
              NavigationPage.IconColor="Black">
     <StackLayout>
         <Image x:Name="imagePogody" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" Margin="0"/>
-        <Label x:Name="LabelTemp" Text="°C" FontSize="28" HorizontalOptions="Center"/>
+        <Label x:Name="LabelTemp" Text="°C" FontSize="32" HorizontalOptions="Center"/>
         <Label x:Name="LabelPlace" Text="" FontSize="18" HorizontalOptions="Center"/>
 
         <Grid Margin="5,25,5,20">
@@ -79,8 +79,12 @@
                 </Grid>
             </Border>
         </Grid>
+        <Border Margin="13,17,13,17" HeightRequest="50" BackgroundColor="White" StrokeShape="RoundRectangle 5">
+            <StackLayout VerticalOptions="Center">
+                <Label HorizontalOptions="Center" FontAttributes="Bold" x:Name="LabelDataInfo" VerticalOptions="Center" FontSize="18" Text="Dane z: "/>
+            </StackLayout>
+        </Border>
 
-
-        <Label x:Name="LabelDataInfo" VerticalOptions="EndAndExpand" Margin="10,0,0,10" FontSize="18" Text="Dane z: "/>
+        
     </StackLayout>
 </ContentPage>
