@@ -10,7 +10,13 @@
             <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5">
                 <toolkit:Expander>
                     <toolkit:Expander.Header>
-                        <Label Text="Wszelkie znaki" FontSize="18" Padding="12"/>
+                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                            <FlexLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeArrowDirection"/>
+                            </FlexLayout.GestureRecognizers>
+                            <Label Text="Wszelkie znaki" FontSize="18" Padding="12"/>
+                            <Image x:Name="ArrowLayoutOfChar" MaximumHeightRequest="20" Margin="0,0,7,0" Source="arrowicon.png"/>
+                        </FlexLayout>
                     </toolkit:Expander.Header>
                     <StackLayout Orientation="Vertical" x:Name="LayoutOfCharacters">
                         

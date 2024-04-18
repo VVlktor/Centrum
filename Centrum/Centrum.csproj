@@ -44,6 +44,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#6b6f73" />
 		
 		<MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
+
 		
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#6b6f73" BaseSize="128,128" />
@@ -64,9 +65,11 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.png" />
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\AppIcon\arrowicon.png" />
 	  <None Remove="Resources\AppIcon\myappicon.png" />
 	  <None Remove="Resources\Fonts\Inconsolata-VariableFont.ttf" />
 	  <None Remove="Resources\Fonts\Oswald-Medium.ttf" />
+	  <None Remove="Resources\Images\arrowicon.png" />
 	  <None Remove="Resources\Images\bluetoothicon.png" />
 	  <None Remove="Resources\Images\currencyicon.png" />
 	  <None Remove="Resources\Images\githubicon.png" />

@@ -24,7 +24,7 @@ public partial class NewsPage : ContentPage
 	{
         DateTime Date = DateTime.Now.AddDays(-10);
         string formattedDate = Date.ToString("yyyy-MM-dd");
-        string link = $"https://api.worldnewsapi.com/search-news?api-key="+NewsApiKey+ "&earliest-publish-date=" + formattedDate + "&language=pl&number=30";
+        string link = $"https://api.worldnewsapi.com/search-news?api-key="+NewsApiKey+ "&earliest-publish-date=" + formattedDate + "&language=pl&number=55";
         var response = await _httpClient.GetAsync(link);
         if (!response.IsSuccessStatusCode)
         {
@@ -63,7 +63,7 @@ public partial class NewsPage : ContentPage
         }
         else
         {
-            if (whichNews<=27)
+            if (whichNews<=50)
             {
                 CollectionOfNews.Add(News.News[whichNews]);
                 whichNews++;

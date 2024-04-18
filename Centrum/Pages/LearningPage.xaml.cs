@@ -8,6 +8,7 @@ public partial class LearningPage : ContentPage
     int correctAnswer = 0;
     bool canBeChecked = true;
     bool areVibrationsOn = Preferences.Default.Get("LearningVibration", true);
+    int currentRotation = 0;
 
     Dictionary<int, Label> przyciskiOdpowiedzi;
     Dictionary<int, Border> borderyOdpowiedzi;
@@ -216,5 +217,11 @@ public partial class LearningPage : ContentPage
             LastStackRow.Add(border);
         }
         LayoutOfCharacters.Add(LastStackRow);   
+    }
+
+    private void ChangeArrowDirection(object sender, TappedEventArgs e)
+    {
+        currentRotation += 180;
+        ArrowLayoutOfChar.RotateTo(currentRotation, 250);
     }
 }

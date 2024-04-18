@@ -45,7 +45,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="newsicon.png" Grid.Column="0"/>
+                        <Image MaximumHeightRequest="70" Source="newsicon.png" Grid.Column="0"/>
                         <Label Text="Newsy" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Grid.Column="1"/>
                     </Grid>
                 </StackLayout>
@@ -60,7 +60,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="sunnydayicon.png" Grid.Column="0"/>
+                        <Image MaximumHeightRequest="70" Source="sunnydayicon.png" Grid.Column="0"/>
                         <Label Text="Pogoda" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Grid.Column="1"/>
                     </Grid>
                     
@@ -98,7 +98,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="noteicon.png" Grid.Column="0"/>
+                        <Image MaximumHeightRequest="70" Source="noteicon.png" Grid.Column="0"/>
                         <Label Text="Notatnik" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="19" Grid.Column="1"/>
                     </Grid>
                 </StackLayout>
@@ -137,7 +137,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="currencyicon.png" Grid.Column="0"/>
+                        <Image MaximumHeightRequest="70" Source="currencyicon.png" Grid.Column="0"/>
                         <Label Text="Waluty" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Grid.Column="1"/>
                     </Grid>
                 </StackLayout>
@@ -177,7 +177,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="settingsicon.png" Grid.Column="0"/>
+                        <Image MaximumHeightRequest="70" Source="settingsicon.png" Grid.Column="0"/>
                         <Label Text="Ustawienia" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="15" Grid.Column="1"/>
                     </Grid>
                 </StackLayout>
