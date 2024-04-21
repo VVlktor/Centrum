@@ -8,7 +8,6 @@ public partial class LearningPage : ContentPage
     int correctAnswer = 0;
     bool canBeChecked = true;
     bool areVibrationsOn = Preferences.Default.Get("LearningVibration", true);
-    int currentRotation = 0;
 
     Dictionary<int, Label> przyciskiOdpowiedzi;
     Dictionary<int, Border> borderyOdpowiedzi;
@@ -17,20 +16,7 @@ public partial class LearningPage : ContentPage
 	{
 		InitializeComponent();
         SetCharactersArray();
-        przyciskiOdpowiedzi = new Dictionary<int, Label>()
-        {
-            { 1, Odpowiedz1 },
-            { 2, Odpowiedz2 },
-            { 3, Odpowiedz3 },
-            { 4, Odpowiedz4 }
-        };
-        borderyOdpowiedzi = new Dictionary<int, Border>()
-        {
-            { 1, BorderOdpowiedz1 },
-            { 2, BorderOdpowiedz2 },
-            { 3, BorderOdpowiedz3 },
-            { 4, BorderOdpowiedz4 }
-        };
+        SetDictionary();
         AddTableOfCharacters();
         NextQuestion();
     }
@@ -46,6 +32,24 @@ public partial class LearningPage : ContentPage
             canBeChecked = true;
         }
 		
+    }
+
+    public void SetDictionary()
+    {
+        przyciskiOdpowiedzi = new Dictionary<int, Label>()
+        {
+            { 1, Odpowiedz1 },
+            { 2, Odpowiedz2 },
+            { 3, Odpowiedz3 },
+            { 4, Odpowiedz4 }
+        };
+        borderyOdpowiedzi = new Dictionary<int, Border>()
+        {
+            { 1, BorderOdpowiedz1 },
+            { 2, BorderOdpowiedz2 },
+            { 3, BorderOdpowiedz3 },
+            { 4, BorderOdpowiedz4 }
+        };
     }
 
     public async Task CheckAnswer(string answ, object sender)
@@ -142,7 +146,7 @@ public partial class LearningPage : ContentPage
             {
                 StackLayout WewnetrznyLayout = new StackLayout();
 
-                Label labelJap = new Label
+                Label labelForei = new Label
                 {
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                     FontSize = 20,
@@ -156,7 +160,7 @@ public partial class LearningPage : ContentPage
                     Text = Characters[i + j, 1]
                 };
 
-                WewnetrznyLayout.Add(labelJap);
+                WewnetrznyLayout.Add(labelForei);
                 WewnetrznyLayout.Add(labelEng);
 
                 Border border = new Border()
@@ -178,15 +182,13 @@ public partial class LearningPage : ContentPage
 
         }
 
-
-
         StackLayout LastStackRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.Center };
 
         for (i = i; i<Characters.Length/2; i++)
         {
             StackLayout WewnetrznyLayout = new StackLayout();
 
-            Label labelJap = new Label
+            Label labelForei = new Label
             {
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 FontSize = 20,
@@ -200,7 +202,7 @@ public partial class LearningPage : ContentPage
                 Text = Characters[i, 1]
             };
 
-            WewnetrznyLayout.Add(labelJap);
+            WewnetrznyLayout.Add(labelForei);
             WewnetrznyLayout.Add(labelEng);
 
             Border border = new Border()
@@ -221,7 +223,7 @@ public partial class LearningPage : ContentPage
 
     private void ChangeArrowDirection(object sender, TappedEventArgs e)
     {
-        currentRotation += 180;
+        int currentRotation = ArrowLayoutOfChar.Rotation == 0 ? 180 : 0;
         ArrowLayoutOfChar.RotateTo(currentRotation, 250);
     }
 }

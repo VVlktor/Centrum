@@ -18,8 +18,6 @@ public partial class CurrencyPage : TabbedPage
         GetData();
     }
 
-
-
 	public async void GetData()
 	{
         string link = $"https://v6.exchangerate-api.com/v6/" + CurrencyApiKey + "/latest/PLN";
@@ -46,7 +44,6 @@ public partial class CurrencyPage : TabbedPage
         CurrCalc.IsVisible = true;
     }
 
-   
     private async void ShowCurrInfo(object sender, TappedEventArgs e)
     {
         var curr = (KeyValuePair<string, double>)e.Parameter;
@@ -93,5 +90,20 @@ public partial class CurrencyPage : TabbedPage
     {
         KalkEntryPLN.Text = "";
         KalkEntryWaluta.Text = "";
+    }
+
+    private void CurrMoreInfo(object sender, TappedEventArgs e)
+    {
+        var selectedCurr = (StackLayout)((Border)sender).Content;
+        if (selectedCurr != null)
+        {
+            var arrow = selectedCurr.Children.OfType<Image>().FirstOrDefault();
+            if (arrow != null)
+            {
+                int currentRotation = arrow.Rotation == 0 ? 180 : 0;
+                arrow.RotateTo(currentRotation, 500);
+            }
+            
+        }
     }
 }

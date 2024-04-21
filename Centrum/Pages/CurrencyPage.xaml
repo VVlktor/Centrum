@@ -15,9 +15,13 @@
                                 <toolkit:Expander>
                                     <toolkit:Expander.Header>
                                         <Border StrokeThickness="1" Stroke="LightGray" StrokeShape="RoundRectangle 2">
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Tapped="CurrMoreInfo"/>
+                                            </Border.GestureRecognizers>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Key}" Padding="10" FontSize="16"/>
                                                 <Label Text="{Binding Value, StringFormat='{0:F2}'}" HorizontalOptions="EndAndExpand" Padding="10" FontSize="16"/>
+                                                <Image MaximumHeightRequest="20" Margin="7,0,7,0" Source="arrowicon.png" Rotation="0"/>
                                             </StackLayout>
                                         </Border>
                                     </toolkit:Expander.Header>
