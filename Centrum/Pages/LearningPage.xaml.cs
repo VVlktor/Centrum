@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+﻿using Centrum.Classes;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Centrum.Pages;
 
@@ -15,7 +16,7 @@ public partial class LearningPage : ContentPage
     public LearningPage()
 	{
 		InitializeComponent();
-        SetCharactersArray();
+       // SetCharactersArray();
         SetDictionary();
         AddTableOfCharacters();
         NextQuestion();
@@ -36,6 +37,7 @@ public partial class LearningPage : ContentPage
 
     public void SetDictionary()
     {
+        Characters=Services.GetLearningData();
         przyciskiOdpowiedzi = new Dictionary<int, Label>()
         {
             { 1, Odpowiedz1 },
@@ -112,7 +114,7 @@ public partial class LearningPage : ContentPage
         QuestionLabel.Text = $"{Characters[whichAnswer,0]}";
     }
 
-    public void SetCharactersArray()
+  /*  public void SetCharactersArray()
     {
         string lng = Preferences.Default.Get("LearningLanguage", "Japoński");
         switch (lng)
@@ -134,7 +136,7 @@ public partial class LearningPage : ContentPage
                 Characters = CJ;
                 break;
         } 
-    }
+    }*/
 
     public void AddTableOfCharacters()
     {

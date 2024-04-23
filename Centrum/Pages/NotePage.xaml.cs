@@ -17,17 +17,7 @@ public partial class NotePage : ContentPage
     public void LoadFiles()
     {
         fileNames.Clear();
-        string mainDir = Path.Combine(FileSystem.Current.AppDataDirectory, "YourTxtFiles");
-        if (!Directory.Exists(mainDir))
-        {
-            Directory.CreateDirectory(mainDir);
-        }
-        string[] Paths = Directory.GetFiles(mainDir);
-        foreach (string FilePath in Paths)
-        {
-            FileInfo fileInfo = new FileInfo(FilePath);
-            fileNames.Add(new NoteFile { Name = Path.GetFileName(FilePath), LastAccess = fileInfo.LastAccessTime.ToString() });
-        }
+        fileNames = Services.GetFiles();
         ListViewOfFiles.ItemsSource = fileNames;
     }
 

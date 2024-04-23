@@ -9,7 +9,7 @@ public partial class NewsPage : ContentPage
     private readonly HttpClient _httpClient = new HttpClient();
     public ObservableCollection<NewsItem> CollectionOfNews { get; set; }
     string NewsApiKey;
-    int whichNews=3;
+    int whichNews=6;
 
     NewsData News;
 
@@ -22,21 +22,7 @@ public partial class NewsPage : ContentPage
 
 	public async void LoadNews()
 	{
-        DateTime Date = DateTime.Now.AddDays(-10);
-        string formattedDate = Date.ToString("yyyy-MM-dd");
-        string link = $"https://api.worldnewsapi.com/search-news?api-key="+NewsApiKey+ "&earliest-publish-date=" + formattedDate + "&language=pl&number=55";
-        var response = await _httpClient.GetAsync(link);
-        if (!response.IsSuccessStatusCode)
-        {
-             throw new Exception($"Failed to fetch news data: {response.StatusCode}");
-        }
-        var content = await response.Content.ReadAsStringAsync();
-        News = System.Text.Json.JsonSerializer.Deserialize<NewsData>(content);
-        bool isImageVisible = Preferences.Default.Get("isNewsImageVisible", false);
-        foreach (var h in News.News)
-        {
-            h.IsImageVisible=isImageVisible;
-        }
+        News = await Services.GetNews(NewsApiKey);
         CollectionOfNews = new ObservableCollection<NewsItem> { News.News[0], News.News[1], News.News[2], News.News[3], News.News[4], News.News[5], News.News[6] };
         BindingContext = this;
     }

@@ -28,10 +28,7 @@ namespace Centrum
         {
             try
             {
-                using var stream = await FileSystem.OpenAppPackageFileAsync("HiddenData.json");
-                using var reader = new StreamReader(stream);
-                string fileContent = await reader.ReadToEndAsync();
-                HiddenDataTokens obj = JsonConvert.DeserializeObject<HiddenDataTokens>(fileContent);
+                HiddenDataTokens obj = await Services.GetApiKeys();
                 WeatherApiKey = obj.WEATHER_API_KEY;
                 NewsApiKey = obj.NEWS_API_KEY;
                 CurrencyApiKey = obj.CURRENCY_API_KEY;
@@ -54,7 +51,7 @@ namespace Centrum
 
         public async void LoadWeatherData()
         {
-            weatherData = await GetWeatherAsync();
+            weatherData = await Services.GetWeatherData(WeatherApiKey);
             if (weatherData != null)
             {
                 IsDataLoaded = true;
@@ -79,26 +76,6 @@ namespace Centrum
                 indicatorPogody.IsVisible = false;
                 
             }
-        }
-
-        public async Task<WeatherData> GetWeatherAsync()
-        {
-            string location = Preferences.Default.Get("Location", "Warsaw");
-            string link = $"https://api.weatherapi.com/v1/forecast.json?key=" + WeatherApiKey+"&q="+location;
-            var response = await _httpClient.GetAsync(link);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Failed to fetch weather data: {response.StatusCode}");
-            }
-            var content = await response.Content.ReadAsStringAsync();
-            WeatherData dane = System.Text.Json.JsonSerializer.Deserialize<WeatherData>(content);
-            JObject jsonObj = JObject.Parse(content);
-            dane.Current.Chance_of_rain = jsonObj["forecast"]["forecastday"][0]["day"]["daily_chance_of_rain"].Value<int>();
-            dane.Current.Chance_of_snow = jsonObj["forecast"]["forecastday"][0]["day"]["daily_chance_of_snow"].Value<int>();
-            dane.Current.Sunset = jsonObj["forecast"]["forecastday"][0]["astro"]["sunset"].Value<string>();
-            dane.Current.Sunrise = jsonObj["forecast"]["forecastday"][0]["astro"]["sunrise"].Value<string>();
-            dane.Current.Avg_humidity = jsonObj["forecast"]["forecastday"][0]["day"]["avghumidity"].Value<int>();
-            return dane;
         }
 
         private void ShowNewPage(object sender, TappedEventArgs e)
