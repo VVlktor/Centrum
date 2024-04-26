@@ -11,9 +11,7 @@ namespace Centrum
     public partial class MainPage : ContentPage
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private string WeatherApiKey;
-        private string NewsApiKey;
-        private string CurrencyApiKey;
+        private HiddenDataTokens ApiKeys;
         WeatherData weatherData;
         bool IsDataLoaded = false;
 
@@ -28,18 +26,15 @@ namespace Centrum
         {
             try
             {
-                HiddenDataTokens obj = await Services.GetApiKeys();
-                WeatherApiKey = obj.WEATHER_API_KEY;
-                NewsApiKey = obj.NEWS_API_KEY;
-                CurrencyApiKey = obj.CURRENCY_API_KEY;
+                ApiKeys = await Services.GetApiKeys();
                 if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
                 {
                     LoadWeatherData();
                 }
                 else
                 {
-                    indicatorPogody.IsVisible=false;
                     labelDostepNet.IsVisible = true;
+                    indicatorPogody.IsVisible=false;
                 }
                 
             }
@@ -51,7 +46,7 @@ namespace Centrum
 
         public async void LoadWeatherData()
         {
-            weatherData = await Services.GetWeatherData(WeatherApiKey);
+            weatherData = await Services.GetWeatherData(ApiKeys.WEATHER_API_KEY);
             if (weatherData != null)
             {
                 IsDataLoaded = true;
@@ -74,7 +69,6 @@ namespace Centrum
                     ImagePogody.Source = "sunnyday.png";
                 }
                 indicatorPogody.IsVisible = false;
-                
             }
         }
 
@@ -104,6 +98,9 @@ namespace Centrum
                 case "Waluta":
                     GoToCurrencyPage();
                     break;
+                case "Bluetooth":
+                    GoToBluetoothPage();
+                    break;
                 default:
                     break;
             }
@@ -123,7 +120,7 @@ namespace Centrum
         {
             if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
             { 
-                await Navigation.PushAsync(new NavigationPage(new NewsPage(NewsApiKey)));
+                await Navigation.PushAsync(new NavigationPage(new NewsPage(ApiKeys.NEWS_API_KEY)));
             }
                 
         }
@@ -155,8 +152,13 @@ namespace Centrum
         {
             if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
             {
-                await Navigation.PushAsync(new NavigationPage(new CurrencyPage(CurrencyApiKey)));
+                await Navigation.PushAsync(new NavigationPage(new CurrencyPage(ApiKeys.CURRENCY_API_KEY)));
             }
+        }
+
+        public async void GoToBluetoothPage()
+        {
+            await Navigation.PushAsync(new NavigationPage(new BluetoothPage()));
         }
     }
 }
