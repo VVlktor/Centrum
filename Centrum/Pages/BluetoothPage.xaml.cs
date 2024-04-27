@@ -8,11 +8,32 @@ public partial class BluetoothPage : ContentPage
 	public BluetoothPage()
 	{
 		InitializeComponent();
+        PinMessage.SelectedIndex = 1;
 	}
 
 
     private async void WyslijKomende(object sender, EventArgs e)
     {
+        string message = "";
+        if (isPinRequest.IsChecked)
+        {
+            int pinMode = PinMessage.SelectedIndex==0 ? 1 : 0;
+            message = $"{pinMode}";
+        }
+        message += ":";
+        if (LcdMessage.Text!=null && isLcdRequest.IsChecked)
+        {
+            if(LcdMessage.Text.Length > 32)
+            {
+                await DisplayAlert("Uwaga", "Wiadomosc nie moze byc dluzsza niz 32 znaki!", "OK");
+                return;
+            }
+            message = isLcdRequest.IsChecked ? message + $"{LcdMessage.Text}" : message+"^";
+        }
+        else
+        {
+            message += "^";
+        }
         czyPolaczylo.Text = "Wykonywanie komendy";
         var czyPozwolenie = await Permissions.RequestAsync<Permissions.Bluetooth>();
         if (czyPozwolenie != PermissionStatus.Granted)
@@ -41,11 +62,9 @@ public partial class BluetoothPage : ContentPage
                     await Task.Delay(2000);
                     using (Stream stream = client.GetStream())
                     {
-                        string message = glownyEntry.Text;
-                        message = message == "" ? "T" : message;
                         byte[] dataToSend = System.Text.Encoding.ASCII.GetBytes(message);
                         stream.Write(dataToSend, 0, dataToSend.Length);
-                        czyPolaczylo.Text = "Komenda wyslana pomyslnie";
+                        czyPolaczylo.Text = $"{message}";
                     }
                 }
             }

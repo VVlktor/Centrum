@@ -76,7 +76,7 @@ public partial class CurrencyPage : TabbedPage
             double curr;
             if (double.TryParse(e.NewTextValue, out curr))
             {
-                KalkEntryPLN.Text = $"{string.Format("{0:0.00}",curr / dataOfCurrency.coversionRates[(string)CurrencyPicker.SelectedItem])}";
+                KalkEntryPLN.Text = $"{string.Format("{0:0.00}",curr * dataOfCurrency.coversionRates[(string)CurrencyPicker.SelectedItem])}";
             }
             else
             {
