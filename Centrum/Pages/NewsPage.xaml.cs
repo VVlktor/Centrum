@@ -38,24 +38,15 @@ public partial class NewsPage : ContentPage
 
     private void Scrolling(object sender, ScrolledEventArgs e)
     {
-        if (!(sender is ScrollView scrollView))
-        {
-            return;
-        }
+        if (!(sender is ScrollView scrollView)) return;
         var scrollSpace = scrollView.ContentSize.Height - scrollView.Height;
-        if (scrollSpace > e.ScrollY+10)
+        if (scrollSpace > e.ScrollY+10) return;
+        else if(whichNews <= 50)
         {
-            return;
-        }
-        else
-        {
-            if (whichNews<=50)
-            {
-                CollectionOfNews.Add(News.News[whichNews]);
-                whichNews++;
-                CollectionOfNews.Add(News.News[whichNews]);
-                whichNews++;
-            }
+            CollectionOfNews.Add(News.News[whichNews]);
+            whichNews++;
+            CollectionOfNews.Add(News.News[whichNews]);
+            whichNews++;
         }
     }
 }

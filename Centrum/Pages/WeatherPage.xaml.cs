@@ -30,16 +30,10 @@ public partial class WeatherPage : ContentPage
 	public void setImage()
 	{
 		if (weatherData.Current.Chance_of_snow >= 70)
-		{
 			imagePogody.Source = "snowyday.png";
-		}
 		else if (weatherData.Current.Chance_of_rain >= 60)
-		{
 			imagePogody.Source = "rainyday.png";
-		}
 		else
-		{
 			imagePogody.Source = "sunnyday.png";
-		}
 	}
 }

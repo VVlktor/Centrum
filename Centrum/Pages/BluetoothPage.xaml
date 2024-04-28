@@ -2,26 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Centrum.Pages.BluetoothPage"
-             Title="BluetoothPage">
+             Title="Bluetooth"
+             NavigationPage.IconColor="Black">
     <StackLayout Orientation="Vertical">
-        <Entry x:Name="glownyEntry"/>
-        <Label x:Name="czyPolaczylo"/>
-        <Button Clicked="WyslijKomende" Text="Wyslij"/>
-        <StackLayout Orientation="Horizontal">
-            <Label VerticalOptions="Center" Text="Pin -" FontSize="24" Margin="10"/>
-            <Picker x:Name="PinMessage" HorizontalOptions="StartAndExpand" Margin="5" FontSize="24">
-                <Picker.Items>
-                    <x:String>Włącz</x:String>
-                    <x:String>Wyłącz</x:String>
-                </Picker.Items>
-            </Picker>
-            <CheckBox x:Name="isPinRequest" IsChecked="False" HorizontalOptions="End" Margin="5"/>
-        </StackLayout>
         
-        <StackLayout Orientation="Horizontal">
-            <Label VerticalOptions="Center" Text="Ekran -" FontSize="24" Margin="10"/>
-            <Entry x:Name="LcdMessage" WidthRequest="100" HorizontalOptions="Center"/>
-            <CheckBox x:Name="isLcdRequest" IsChecked="False" HorizontalOptions="End" Margin="5"/>
-        </StackLayout>
+        <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5,10">
+            <StackLayout Orientation="Horizontal">
+                <Label VerticalOptions="Center" Text="Pin" FontSize="24" Margin="10"/>
+                <Picker x:Name="PinMessage" HorizontalOptions="CenterAndExpand" Margin="5" FontSize="24">
+                    <Picker.Items>
+                        <x:String>Włącz</x:String>
+                        <x:String>Wyłącz</x:String>
+                    </Picker.Items>
+                </Picker>
+                <CheckBox x:Name="isPinRequest" CheckedChanged="CheckedBox" IsChecked="False" HorizontalOptions="End" Margin="5"/>
+            </StackLayout>
+        </Border>
+        
+        <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5,10">
+            <StackLayout Orientation="Horizontal">
+                <Label VerticalOptions="Center" Text="Ekran" FontSize="24" Margin="10"/>
+                <Entry x:Name="LcdMessage" Placeholder="Twoja wiadomość"  FontSize="24" WidthRequest="220" HorizontalOptions="CenterAndExpand"/>
+                <CheckBox x:Name="isLcdRequest" CheckedChanged="CheckedBox" IsChecked="False" HorizontalOptions="End" Margin="5"/>
+            </StackLayout>
+        </Border>
+
+        <Border BackgroundColor="LightGray" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5,10">
+            <Button x:Name="ButtonOdKomend" Clicked="WyslijKomende" Text="Wyslij" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
+        </Border>
+
+        <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5" VerticalOptions="EndAndExpand" HeightRequest="40">
+             <Label x:Name="labelStan" Text="Oczekiwanie na komendy" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalOptions="Center"/>
+        </Border>
+       
+        
     </StackLayout>
 </ContentPage>

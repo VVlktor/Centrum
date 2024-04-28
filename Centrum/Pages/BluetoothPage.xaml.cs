@@ -9,8 +9,16 @@ public partial class BluetoothPage : ContentPage
 	{
 		InitializeComponent();
         PinMessage.SelectedIndex = 1;
+        ButtonOdKomend.IsEnabled = false;
 	}
 
+    private void CheckedBox(object sender, CheckedChangedEventArgs e)
+    {
+        if(!isPinRequest.IsChecked && !isLcdRequest.IsChecked)
+            ButtonOdKomend.IsEnabled = false;
+        else
+            ButtonOdKomend.IsEnabled = true;
+    }
 
     private async void WyslijKomende(object sender, EventArgs e)
     {
@@ -34,7 +42,7 @@ public partial class BluetoothPage : ContentPage
         {
             message += "^";
         }
-        czyPolaczylo.Text = "Wykonywanie komendy";
+        labelStan.Text = "Wykonywanie komendy";
         var czyPozwolenie = await Permissions.RequestAsync<Permissions.Bluetooth>();
         if (czyPozwolenie != PermissionStatus.Granted)
         {
@@ -64,12 +72,10 @@ public partial class BluetoothPage : ContentPage
                     {
                         byte[] dataToSend = System.Text.Encoding.ASCII.GetBytes(message);
                         stream.Write(dataToSend, 0, dataToSend.Length);
-                        czyPolaczylo.Text = $"{message}";
+                        labelStan.Text = "Komenda wys³ana";
                     }
                 }
             }
         }
     }
-
-
 }

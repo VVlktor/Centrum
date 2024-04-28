@@ -18,24 +18,19 @@ namespace Centrum.Classes
             {
                 case "Grecki":
                     return new string[,] { { "α", "alpha" }, { "β", "beta" }, { "γ", "gamma" }, { "δ", "delta" }, { "ε", "epsilon" }, { "ζ", "zeta" }, { "η", "eta" }, { "θ", "theta" }, { "ι", "iota" }, { "κ", "kappa" }, { "λ", "lambda" }, { "μ", "mu" }, { "ν", "nu" }, { "ξ", "xi" }, { "ο", "omicron" }, { "π", "pi" }, { "ρ", "rho" }, { "σ", "sigma" }, { "τ", "tau" }, { "υ", "upsilon" }, { "φ", "phi" }, { "χ", "chi" }, { "ψ", "psi" }, { "ω", "omega" } };
-                    break;
                 case "Arabski":
                      return new string[,] { { "ا", "a" }, { "ب", "b" }, { "ت", "t" }, { "ث", "th" }, { "ج", "j" }, { "ح", "h" }, { "خ", "kh" }, { "د", "d" }, { "ذ", "dh" }, { "ر", "r" }, { "ز", "z" }, { "س", "s" }, { "ش", "sh" }, { "ص", "s" }, { "ض", "d" }, { "ط", "t" }, { "ظ", "dh" }, { "ع", "a" }, { "غ", "gh" }, { "ف", "f" }, { "ق", "q" }, { "ك", "k" }, { "ل", "l" }, { "م", "m" }, { "ن", "n" }, { "ه", "h" }, { "و", "w" }, { "ي", "y" } };
-                    break;
                 case "Rosyjski":
                     return new string[,] { { "а", "a" }, { "б", "b" }, { "в", "v" }, { "г", "g" }, { "д", "d" }, { "е", "e" }, { "ё", "yo" }, { "ж", "zh" }, { "з", "z" }, { "и", "i" }, { "й", "j" }, { "к", "k" }, { "л", "l" }, { "м", "m" }, { "н", "n" }, { "о", "o" }, { "п", "p" }, { "р", "r" }, { "с", "s" }, { "т", "t" }, { "у", "u" }, { "ф", "f" }, { "х", "h" }, { "ц", "ts" }, { "ч", "ch" }, { "ш", "sh" }, { "щ", "sht" }, { "ъ", "j" }, { "ы", "i" }, { "ь", "j" }, { "э", "e" }, { "ю", "yu" }, { "я", "ya" } };
-                    break;
                 default:
                     return new string[,] { { "あ", "a" }, { "い", "i" }, { "う", "u" }, { "え", "e" }, { "お", "o" }, { "か", "ka" }, { "き", "ki" }, { "く", "ku" }, { "け", "ke" }, { "こ", "ko" }, { "さ", "sa" }, { "し", "shi" }, { "す", "su" }, { "せ", "se" }, { "そ", "so" }, { "た", "ta" }, { "ち", "chi" }, { "つ", "tsu" }, { "て", "te" }, { "と", "to" }, { "な", "na" }, { "に", "ni" }, { "ぬ", "nu" }, { "ね", "ne" }, { "の", "no" }, { "は", "ha" }, { "ひ", "hi" }, { "ふ", "fu" }, { "へ", "he" }, { "ほ", "ho" }, { "ま", "ma" }, { "み", "mi" }, { "む", "mu" }, { "め", "me" }, { "も", "mo" }, { "や", "ya" }, { "ゆ", "yu" }, { "よ", "yo" }, { "ら", "ra" }, { "り", "ri" }, { "る", "ru" }, { "れ", "re" }, { "ろ", "ro" }, { "わ", "wa" }, { "を", "o" }, { "ん", "n" } };
-                    break;
             }
         }
 
         public static async Task<NewsData> GetNews(string NewsApiKey)
         {
             HttpClient _httpClient = new HttpClient();
-            DateTime Date = DateTime.Now.AddDays(-10);
-            string formattedDate = Date.ToString("yyyy-MM-dd");
+            string formattedDate = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd");
             string link = $"https://api.worldnewsapi.com/search-news?api-key=" + NewsApiKey + "&earliest-publish-date=" + formattedDate + "&language=pl&number=55";
             var response = await _httpClient.GetAsync(link);
             if (!response.IsSuccessStatusCode)

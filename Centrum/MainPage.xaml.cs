@@ -19,7 +19,6 @@ namespace Centrum
         {
             LoadApiKeys();
             InitializeComponent();
-            
         }
 
         public async void LoadApiKeys()
@@ -57,17 +56,11 @@ namespace Centrum
                 LabelPres.Text = $"{weatherData.Current.Pressure_mb} hPa";
                 LabelDanePogoda.Text = $"Dane z:\n{weatherData.Current.Last_updated}";
                 if (weatherData.Current.Chance_of_snow>=70)
-                {
                     ImagePogody.Source = "snowyday.png";
-                }
                 else if (weatherData.Current.Chance_of_rain >= 70 )
-                {
                     ImagePogody.Source = "rainyday.png";
-                }
                 else
-                {
                     ImagePogody.Source = "sunnyday.png";
-                }
                 indicatorPogody.IsVisible = false;
             }
         }
@@ -110,27 +103,19 @@ namespace Centrum
         {
             bool czyPrzejsc = await DisplayAlert("Czy kontynuować?", "Opuścisz aplikacje", "Tak", "Nie");
             if (czyPrzejsc)
-            {
-                Launcher.OpenAsync("https://github.com/VVlktor");
-            }
-            
+                await Launcher.OpenAsync("https://github.com/VVlktor");
         }
 
         public async void GoToNewsPage()
         {
             if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-            { 
-                await Navigation.PushAsync(new NavigationPage(new NewsPage(ApiKeys.NEWS_API_KEY)));
-            }
-                
+                await Navigation.PushAsync(new NavigationPage(new NewsPage(ApiKeys.NEWS_API_KEY)));  
         }
 
         public async void GoToWeatherPage()
         {
             if (IsDataLoaded && Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-            {
                 await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
-            }
         }
 
         public async void GoToNotePage()
@@ -151,9 +136,7 @@ namespace Centrum
         public async void GoToCurrencyPage()
         {
             if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-            {
                 await Navigation.PushAsync(new NavigationPage(new CurrencyPage(ApiKeys.CURRENCY_API_KEY)));
-            }
         }
 
         public async void GoToBluetoothPage()

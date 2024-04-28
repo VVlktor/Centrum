@@ -16,7 +16,6 @@ public partial class LearningPage : ContentPage
     public LearningPage()
 	{
 		InitializeComponent();
-       // SetCharactersArray();
         SetDictionary();
         AddTableOfCharacters();
         NextQuestion();
@@ -74,18 +73,16 @@ public partial class LearningPage : ContentPage
             {
                 borderRec.BackgroundColor = Color.FromArgb("#fa2828");
                 borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#5ad647");
-                if (areVibrationsOn)
+                for(int i=0; i<2; i++)
                 {
-                    TimeSpan vibrationLength = TimeSpan.FromSeconds(0.15);
-                    Vibration.Default.Vibrate(vibrationLength);
+                    if (areVibrationsOn)
+                    {
+                        TimeSpan vibrationLength = TimeSpan.FromSeconds(0.15);
+                        Vibration.Default.Vibrate(vibrationLength);
+                    }
+                    await Task.Delay(200);
                 }
-                await Task.Delay(200);
-                if (areVibrationsOn)
-                {
-                    TimeSpan vibrationLength = TimeSpan.FromSeconds(0.15);
-                    Vibration.Default.Vibrate(vibrationLength);
-                }
-                await Task.Delay(800);
+                await Task.Delay(600);
                 borderRec.BackgroundColor = Color.FromArgb("#ffffff");
                 borderyOdpowiedzi[correctAnswer].BackgroundColor = Color.FromArgb("#ffffff");
             }
@@ -113,30 +110,6 @@ public partial class LearningPage : ContentPage
         przyciskiOdpowiedzi[correctAnswer].Text = $"{Characters[whichAnswer, 1]}";
         QuestionLabel.Text = $"{Characters[whichAnswer,0]}";
     }
-
-  /*  public void SetCharactersArray()
-    {
-        string lng = Preferences.Default.Get("LearningLanguage", "Japoński");
-        switch (lng)
-        {
-            case "Grecki":
-                string[,] CG = { { "α", "alpha" }, { "β", "beta" }, { "γ", "gamma" }, { "δ", "delta" }, { "ε", "epsilon" }, { "ζ", "zeta" }, { "η", "eta" }, { "θ", "theta" }, { "ι", "iota" }, { "κ", "kappa" }, { "λ", "lambda" }, { "μ", "mu" }, { "ν", "nu" }, { "ξ", "xi" }, { "ο", "omicron" }, { "π", "pi" }, { "ρ", "rho" }, { "σ", "sigma" }, { "τ", "tau" }, { "υ", "upsilon" }, { "φ", "phi" }, { "χ", "chi" }, { "ψ", "psi" }, { "ω", "omega" } };
-                Characters = CG;
-                break;
-            case "Arabski":
-                string[,] CA = { { "ا", "a" }, { "ب", "b" }, { "ت", "t" }, { "ث", "th" }, { "ج", "j" }, { "ح", "h" }, { "خ", "kh" }, { "د", "d" }, { "ذ", "dh" }, { "ر", "r" }, { "ز", "z" }, { "س", "s" }, { "ش", "sh" }, { "ص", "s" }, { "ض", "d" }, { "ط", "t" }, { "ظ", "dh" }, { "ع", "a" }, { "غ", "gh" }, { "ف", "f" }, { "ق", "q" }, { "ك", "k" }, { "ل", "l" }, { "م", "m" }, { "ن", "n" }, { "ه", "h" }, { "و", "w" }, { "ي", "y" } };
-                Characters = CA;
-                break;
-            case "Rosyjski":
-                string[,] CR = { { "а", "a" }, { "б", "b" }, { "в", "v" }, { "г", "g" }, { "д", "d" }, { "е", "e" }, { "ё", "yo" }, { "ж", "zh" }, { "з", "z" }, { "и", "i" }, { "й", "j" }, { "к", "k" }, { "л", "l" }, { "м", "m" }, { "н", "n" }, { "о", "o" }, { "п", "p" }, { "р", "r" }, { "с", "s" }, { "т", "t" }, { "у", "u" }, { "ф", "f" }, { "х", "h" }, { "ц", "ts" }, { "ч", "ch" }, { "ш", "sh" }, { "щ", "sht" }, { "ъ", "j" }, { "ы", "i" }, { "ь", "j" }, { "э", "e" }, { "ю", "yu" }, { "я", "ya" } };
-                Characters = CR;
-                break;
-            default:
-                string[,] CJ = { { "あ", "a" }, { "い", "i" }, { "う", "u" }, { "え", "e" }, { "お", "o" }, { "か", "ka" }, { "き", "ki" }, { "く", "ku" }, { "け", "ke" }, { "こ", "ko" }, { "さ", "sa" }, { "し", "shi" }, { "す", "su" }, { "せ", "se" }, { "そ", "so" }, { "た", "ta" }, { "ち", "chi" }, { "つ", "tsu" }, { "て", "te" }, { "と", "to" }, { "な", "na" }, { "に", "ni" }, { "ぬ", "nu" }, { "ね", "ne" }, { "の", "no" }, { "は", "ha" }, { "ひ", "hi" }, { "ふ", "fu" }, { "へ", "he" }, { "ほ", "ho" }, { "ま", "ma" }, { "み", "mi" }, { "む", "mu" }, { "め", "me" }, { "も", "mo" }, { "や", "ya" }, { "ゆ", "yu" }, { "よ", "yo" }, { "ら", "ra" }, { "り", "ri" }, { "る", "ru" }, { "れ", "re" }, { "ろ", "ro" }, { "わ", "wa" }, { "を", "o" }, { "ん", "n" } };
-                Characters = CJ;
-                break;
-        } 
-    }*/
 
     public void AddTableOfCharacters()
     {

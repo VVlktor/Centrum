@@ -23,10 +23,7 @@ public partial class PageOfNews : ContentPage
         {
             autorzy = autorzy + x + ", ";
         }
-        if (autorzy.Length >= 2)
-        {
-            autorzy = autorzy.Remove(autorzy.Length - 2);
-        }
+        autorzy = autorzy.Length >= 2 ? autorzy.Remove(autorzy.Length - 2) : autorzy;
         NewsLabelAuthors.Text = autorzy;
     }
 
