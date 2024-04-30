@@ -56,8 +56,14 @@ public partial class BluetoothPage : ContentPage
             if (!device.Authenticated)
             {
                 bool isPaired = BluetoothSecurity.PairRequest(device.DeviceAddress, BluetoothService.SerialPort.ToString());
-                if (!isPaired) return;
+                if (!isPaired)
+                {
+                    labelStan.Text = "Nie uda³o siê sparowaæ";
+                    return;
+                }
             }
+            else
+                labelStan.Text = "Urz¹dzenie nie autoryzowane";
             using (var client = new BluetoothClient())
             {
                 if (client.Connected)
@@ -75,7 +81,11 @@ public partial class BluetoothPage : ContentPage
                         labelStan.Text = "Komenda wys³ana";
                     }
                 }
+                else
+                    labelStan.Text = "Nie uda³o siê po³¹czyæ";
             }
         }
+        else
+            labelStan.Text = "Nie znaleziono urz¹dzenia";
     }
 }

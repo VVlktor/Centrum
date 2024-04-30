@@ -10,7 +10,7 @@
         <StackLayout>
             <CollectionView ItemsSource="{Binding CollectionOfNews}">
                 <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                    <DataTemplate>
                         <Border Margin="10" Padding="5" MinimumHeightRequest="50" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5">
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="CheckOutNews" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>

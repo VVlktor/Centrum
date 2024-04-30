@@ -92,5 +92,19 @@ namespace Centrum.Classes
             }
             return fileNames;
         }
+
+        public static async Task<CurrencyData> GetCurrencyData(string CurrencyApiKey)
+        {
+            HttpClient _httpClient = new HttpClient();
+            string link = $"https://v6.exchangerate-api.com/v6/" + CurrencyApiKey + "/latest/PLN";
+            var response = await _httpClient.GetAsync(link);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to fetch currency data: {response.StatusCode}");
+            }
+            string content = await response.Content.ReadAsStringAsync();
+            CurrencyData data = System.Text.Json.JsonSerializer.Deserialize<CurrencyData>(content);
+            return data;
+        }
     }
 }

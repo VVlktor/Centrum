@@ -20,14 +20,7 @@ public partial class CurrencyPage : TabbedPage
 
 	public async void GetData()
 	{
-        string link = $"https://v6.exchangerate-api.com/v6/" + CurrencyApiKey + "/latest/PLN";
-        var response = await _httpClient.GetAsync(link);
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new Exception($"Failed to fetch currency data: {response.StatusCode}");
-        }
-        var content = await response.Content.ReadAsStringAsync();
-        dataOfCurrency=JsonSerializer.Deserialize<CurrencyData>(content);
+        dataOfCurrency = await Services.GetCurrencyData(CurrencyApiKey);
         dataOfCurrency.coversionRatesList = dataOfCurrency.coversionRates.ToList();
         SetData();
     }
@@ -103,7 +96,6 @@ public partial class CurrencyPage : TabbedPage
                 int currentRotation = arrow.Rotation == 0 ? 180 : 0;
                 arrow.RotateTo(currentRotation, 500);
             }
-            
         }
     }
 }

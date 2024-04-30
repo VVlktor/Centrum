@@ -21,7 +21,6 @@ public partial class NotePage : ContentPage
         ListViewOfFiles.ItemsSource = fileNames;
     }
 
-
     private async void FileTapped(object sender, TappedEventArgs e)
     {
         var tappedFile = e.Parameter as NoteFile;
@@ -32,7 +31,6 @@ public partial class NotePage : ContentPage
     {
         await Navigation.PushModalAsync(new NavigationPage(new AddNotePage()));
     }
-
 
     protected override void OnAppearing()
     {
