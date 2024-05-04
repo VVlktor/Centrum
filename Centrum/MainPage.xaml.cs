@@ -1,10 +1,5 @@
 ﻿using Centrum.Classes;
-using System.Text.Json;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json.Nodes;
 using Centrum.Pages;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Centrum
 {
@@ -23,23 +18,15 @@ namespace Centrum
 
         public async void LoadApiKeys()
         {
-            try
+            ApiKeys = await Services.GetApiKeys();
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
             {
-                ApiKeys = await Services.GetApiKeys();
-                if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-                {
-                    LoadWeatherData();
-                }
-                else
-                {
-                    labelDostepNet.IsVisible = true;
-                    indicatorPogody.IsVisible=false;
-                }
-                
+                LoadWeatherData();
             }
-            catch (Exception exception)
+            else
             {
-                Console.WriteLine(exception.Message);
+                labelDostepNet.IsVisible = true;
+                indicatorPogody.IsVisible=false;
             }
         }
 
@@ -65,83 +52,43 @@ namespace Centrum
             }
         }
 
-        private void ShowNewPage(object sender, TappedEventArgs e)
+        private async void ShowNewPage(object sender, TappedEventArgs e)
         {
             var whichPage = e.Parameter as string;
             switch (whichPage)
             {
                 case "Autor":
-                    GoToGithub();
-                    break;
+					bool czyPrzejsc = await DisplayAlert("Czy kontynuować?", "Opuścisz aplikacje", "Tak", "Nie");
+					if (czyPrzejsc)
+						await Launcher.OpenAsync("https://github.com/VVlktor");
+					break;
                 case "Newsy":
-                    GoToNewsPage();
-                    break;
+					if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+						await Navigation.PushAsync(new NavigationPage(new NewsPage(ApiKeys.NEWS_API_KEY)));
+					break;
                 case "Pogoda":
-                    GoToWeatherPage();
-                    break;
+					if (IsDataLoaded && Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+						await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
+					break;
                 case "Notatnik":
-                    GoToNotePage();
-                    break;
+					await Navigation.PushAsync(new NavigationPage(new NotePage()));
+					break;
                 case "Ustawienia":
-                    GoToSettings();
-                    break;
+					await Navigation.PushAsync(new NavigationPage(new SettingsPage()));
+					break;
                 case "Nauka":
-                    GoToLearning();
-                    break;
+					await Navigation.PushAsync(new NavigationPage(new LearningPage()));
+					break;
                 case "Waluta":
-                    GoToCurrencyPage();
-                    break;
+					if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+						await Navigation.PushAsync(new NavigationPage(new CurrencyPage(ApiKeys.CURRENCY_API_KEY)));
+					break;
                 case "Bluetooth":
-                    GoToBluetoothPage();
-                    break;
+					await Navigation.PushAsync(new NavigationPage(new BluetoothPage()));
+					break;
                 default:
                     break;
             }
-        }
-
-        public async void GoToGithub()
-        {
-            bool czyPrzejsc = await DisplayAlert("Czy kontynuować?", "Opuścisz aplikacje", "Tak", "Nie");
-            if (czyPrzejsc)
-                await Launcher.OpenAsync("https://github.com/VVlktor");
-        }
-
-        public async void GoToNewsPage()
-        {
-            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-                await Navigation.PushAsync(new NavigationPage(new NewsPage(ApiKeys.NEWS_API_KEY)));  
-        }
-
-        public async void GoToWeatherPage()
-        {
-            if (IsDataLoaded && Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-                await Navigation.PushAsync(new NavigationPage(new WeatherPage(weatherData)));
-        }
-
-        public async void GoToNotePage()
-        {
-            await Navigation.PushAsync(new NavigationPage(new NotePage()));
-        }
-
-        public async void GoToSettings()
-        {
-            await Navigation.PushAsync(new NavigationPage(new SettingsPage()));
-        }
-
-        public async void GoToLearning()
-        {
-            await Navigation.PushAsync(new NavigationPage(new LearningPage()));
-        }
-
-        public async void GoToCurrencyPage()
-        {
-            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
-                await Navigation.PushAsync(new NavigationPage(new CurrencyPage(ApiKeys.CURRENCY_API_KEY)));
-        }
-
-        public async void GoToBluetoothPage()
-        {
-            await Navigation.PushAsync(new NavigationPage(new BluetoothPage()));
         }
     }
 }

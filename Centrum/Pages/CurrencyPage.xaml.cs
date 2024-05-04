@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Centrum.Classes;
 
 namespace Centrum.Pages;
@@ -55,6 +54,7 @@ public partial class CurrencyPage : TabbedPage
             }
             else
             {
+                KalkEntryWaluta.Text = string.Empty;
                 KalkEntryPLN.Text = string.Empty;
             }
             zmieniam =false;
@@ -74,7 +74,8 @@ public partial class CurrencyPage : TabbedPage
             else
             {
                 KalkEntryWaluta.Text = string.Empty;
-            }
+				KalkEntryPLN.Text = string.Empty;
+			}
             zmieniam = false;
         }
     }

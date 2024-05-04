@@ -9,7 +9,6 @@ public partial class BluetoothPage : ContentPage
 	{
 		InitializeComponent();
         PinMessage.SelectedIndex = 1;
-        ButtonOdKomend.IsEnabled = false;
 	}
 
     private void CheckedBox(object sender, CheckedChangedEventArgs e)

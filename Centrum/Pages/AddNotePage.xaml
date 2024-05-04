@@ -2,17 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Centrum.Pages.AddNotePage"
-             Title="Nowy plik"
+             Title="Stwórz plik"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="False">
     <StackLayout>
         <StackLayout Margin="10,30,10,10">
             <Label Text="Nazwa pliku"/>
             <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5">
-                <Entry x:Name="FileNameEntry"/>
+                <Entry x:Name="FileNameEntry" TextChanged="CheckIfValid"/>
             </Border>
         </StackLayout>
-        <Button Text="Potwierdź" Clicked="CreateFile" BackgroundColor="LightGray" Margin="20,10,20,10"/>
-        <Button Text="Powrót" Clicked="GoBack" BackgroundColor="LightGray" Margin="20,10,20,10"/>
+        
+        <Border BackgroundColor="LightGray" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="20,10,20,10">
+            <Button x:Name="ButtonCreateFile" Clicked="CreateFile" Text="Potwierdź" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="20" IsEnabled="False"/>
+        </Border>
+        
+        <Border BackgroundColor="LightGray" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="20,10,20,10">
+            <Button Clicked="GoBack" Text="Powrót" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
+        </Border>
     </StackLayout>
 </ContentPage>

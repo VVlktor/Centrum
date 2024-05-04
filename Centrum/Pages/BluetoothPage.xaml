@@ -28,13 +28,12 @@
         </Border>
 
         <Border BackgroundColor="LightGray" StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5,10">
-            <Button x:Name="ButtonOdKomend" Clicked="WyslijKomende" Text="Wyslij" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
+            <Button x:Name="ButtonOdKomend" Clicked="WyslijKomende" Text="Wyslij" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" FontSize="20" IsEnabled="False"/>
         </Border>
 
         <Border StrokeThickness="2" Stroke="LightGray" StrokeShape="RoundRectangle 5" Margin="5" VerticalOptions="EndAndExpand" HeightRequest="40">
              <Label x:Name="labelStan" Text="Oczekiwanie na komendy" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalOptions="Center"/>
         </Border>
        
-        
     </StackLayout>
 </ContentPage>
